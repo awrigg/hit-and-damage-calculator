@@ -2,13 +2,15 @@ package br.com.wrigg.dnd.hitAndDamage.character;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import br.com.wrigg.dnd.hitAndDamage.Feat;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
 
-public class Character {
+public class Character extends Observable {
 	
 	private Attribute strength;
+	private Attribute charisma;
 
 	private Weapon weapon;
 	
@@ -34,6 +36,15 @@ public class Character {
 		this.strength = strength;
 	}
 
+	public Attribute getCharisma() {
+		return charisma;
+	}
+
+	public void setCharisma(Attribute charisma) {
+		this.charisma = charisma;
+		
+	}
+	
 	public List<Feat> getFeats() {
 		return feats;
 	}
