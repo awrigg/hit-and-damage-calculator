@@ -13,7 +13,7 @@ public class FeatTest {
 		Feat feat = new Feat("divineMetamagic", "Divine Metamagic");
 
 		Character character = new Character();
-		character.getFeats().add(feat);
+		character.addFeat(feat);
 		
 		Attribute cha = new Attribute(21);
 		character.setCharisma(cha);

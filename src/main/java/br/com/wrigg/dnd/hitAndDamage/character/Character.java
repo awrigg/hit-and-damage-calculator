@@ -42,7 +42,9 @@ public class Character extends Observable {
 
 	public void setCharisma(Attribute charisma) {
 		this.charisma = charisma;
-		
+
+		setChanged();
+        notifyObservers(charisma);
 	}
 	
 	public List<Feat> getFeats() {
@@ -51,6 +53,11 @@ public class Character extends Observable {
 
 	public void setFeats(List<Feat> feats) {
 		this.feats = feats;
+	}
+	
+	public void addFeat(Feat feat) {
+		feats.add(feat);
+		this.addObserver(feat);
 	}
 	
 	@Override

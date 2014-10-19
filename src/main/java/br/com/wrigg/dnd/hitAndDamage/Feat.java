@@ -2,10 +2,12 @@ package br.com.wrigg.dnd.hitAndDamage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import br.com.wrigg.dnd.hitAndDamage.damage.DamageBonus;
 
-public class Feat {
+public class Feat implements Observer {
 	
 	private String id;
 
@@ -52,5 +54,15 @@ public class Feat {
 
 	public String printDamageBonus() {		
 		return damageBonus.printDamageBonus();
+	}
+
+	@Override
+	public void update(Observable character, Object feature) {
+		if(damageBonus != null) 
+			damageBonus.update(feature);
+		else {
+			damageBonus = new DamageBonus();
+			damageBonus.update(feature);
+		}
 	}
 }
