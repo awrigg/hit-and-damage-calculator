@@ -55,6 +55,6 @@ public class Attribute {
 	//FIXME Trocar a funcao Hash para validar outro atributo
 	@Override
 	public int hashCode() {
-		return Integer.hashCode(value);
+		return new Integer(value).hashCode();
 	}
 }

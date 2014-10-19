@@ -31,6 +31,6 @@ public class Bonus {
 	//FIXME Trocar a funcao Hash para validar outro atributo
 	@Override
 	public int hashCode() {
-		return Integer.hashCode(this.bonus);
+		return new Integer(this.bonus).hashCode();
 	}
 }

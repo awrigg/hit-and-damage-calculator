@@ -25,6 +25,6 @@ public class DiceType {
 	
 	@Override
 	public int hashCode() {
-		return Integer.hashCode(diceType);
+		return new Integer(diceType).hashCode();
 	}
 }
