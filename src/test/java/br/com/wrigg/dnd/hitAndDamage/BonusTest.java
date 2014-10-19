@@ -14,5 +14,14 @@ public class BonusTest {
 		bonus = new Bonus(3);
 		assertEquals("+3", bonus.toString());
 	}
+	
+	@Test
+	public void bonusEqualTest() {
+		Bonus bonus1 = new Bonus(2);
+		
+		Bonus bonus2 = new Bonus(2);
 
+		assertEquals(bonus1, bonus2);
+		
+	}
 }

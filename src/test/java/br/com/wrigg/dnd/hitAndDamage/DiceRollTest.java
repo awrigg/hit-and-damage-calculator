@@ -11,12 +11,12 @@ public class DiceRollTest {
 		DiceType diceType = new DiceType(4);
 		Bonus bonus = new Bonus(3);
 		DiceRoll diceRoll = new DiceRoll(diceType, bonus);		
-		assertEquals("d4+3", diceRoll.toString());
+		assertEquals("D4+3", diceRoll.toString());
 
 		diceType = new DiceType(8);
 		bonus = new Bonus(4);
 		diceRoll = new DiceRoll(diceType, bonus);
-		assertEquals("d8+4", diceRoll.toString());
+		assertEquals("D8+4", diceRoll.toString());
 	}
 
 }

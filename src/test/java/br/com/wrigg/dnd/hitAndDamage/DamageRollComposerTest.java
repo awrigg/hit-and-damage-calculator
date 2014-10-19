@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
+import br.com.wrigg.dnd.hitAndDamage.character.Character;
+
 public class DamageRollComposerTest {
 
 	@Test
@@ -13,14 +16,14 @@ public class DamageRollComposerTest {
 		Character character = new Character();
 		character.equip(weapon);
 		DamageRollComposer damageRollComposer = new DamageRollComposer();
-		assertEquals("1d4", damageRollComposer.compose(character));
+		assertEquals("1D4", damageRollComposer.compose(character));
 
 		diceType = new DiceType(8);
 		weapon = new Weapon(diceType);
 		character = new Character();
 		character.equip(weapon);
 		damageRollComposer = new DamageRollComposer();
-		assertEquals("1d8", damageRollComposer.compose(character));
+		assertEquals("1D8", damageRollComposer.compose(character));
 
 		diceType = new DiceType(6);
 		weapon = new Weapon(diceType, 2);
@@ -28,7 +31,7 @@ public class DamageRollComposerTest {
 		character.equip(weapon);
 		damageRollComposer = new DamageRollComposer();
 		damageRollComposer = new DamageRollComposer();
-		assertEquals("2d6", damageRollComposer.compose(character));
+		assertEquals("2D6", damageRollComposer.compose(character));
 	}
 
 }

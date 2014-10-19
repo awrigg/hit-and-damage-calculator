@@ -10,7 +10,21 @@ public class DiceType {
 	
 	@Override
 	public String toString() {		
-		return "d" + diceType;
+		return "D" + diceType;
 	}
 	
+	@Override
+	public boolean equals(Object diceType) {
+		DiceType diceTypeToCompare = (DiceType) diceType;
+		if(this.diceType == diceTypeToCompare.diceType) {
+			return true;
+		} 
+		
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Integer.hashCode(diceType);
+	}
 }
