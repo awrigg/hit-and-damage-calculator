@@ -65,9 +65,10 @@ public class Character extends Observable {
 		Character characterToCompare = (Character) character;
 		if(this.weapon.equals(characterToCompare.getWeapon())) {
 			if((this.strength == null && characterToCompare.getStrength() == null) || this.strength.equals(characterToCompare.getStrength()))
-				return true;
-		} 
-		
+				if((this.charisma == null && characterToCompare.getCharisma() == null) || this.charisma.equals(characterToCompare.getCharisma()))
+					if((this.feats != null && characterToCompare.getFeats() != null) && this.feats.equals(characterToCompare.getFeats()))
+						return true;
+		}
 		return false;
 	}
 

@@ -5,6 +5,9 @@ public class Bonus {
 
 	private int bonus;
 	
+	public Bonus() {
+	}
+	
 	public Bonus(int bonus) {
 		this.bonus = bonus;  
 	}

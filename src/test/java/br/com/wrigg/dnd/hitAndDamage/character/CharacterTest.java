@@ -10,7 +10,6 @@ import org.springframework.test.util.ReflectionTestUtils;
 import br.com.wrigg.dnd.hitAndDamage.DiceType;
 import br.com.wrigg.dnd.hitAndDamage.Feat;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
-import br.com.wrigg.dnd.hitAndDamage.character.Character;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CharacterTest {
@@ -75,12 +74,11 @@ public class CharacterTest {
 		Attribute str1 = new Attribute(18);
 		character1.setStrength(str1);
 
-		Feat feat = new Feat("divineMetamagic", "Divine Metamagic");
-		character1.addFeat(feat);
+		Feat feat1 = new Feat("divineMetamagic", "Divine Metamagic");
+		character1.addFeat(feat1);
 		
-
-		Attribute str1 = new Attribute(18);
-		character1.setStrength(str1);
+		Attribute cha1 = new Attribute(21);
+		character1.setCharisma(cha1);
 		
 		DiceType diceType2 = new DiceType(4);
 		Weapon weapon2 = new Weapon("Kukri", diceType2);
@@ -90,6 +88,12 @@ public class CharacterTest {
 
 		Attribute str2 = new Attribute(18);
 		character2.setStrength(str2);
+		
+		Feat feat2 = new Feat("divineMetamagic", "Divine Metamagic");
+		character2.addFeat(feat2);
+		
+		Attribute cha2 = new Attribute(21);
+		character2.setCharisma(cha2);
 
 		assertEquals(character1, character2);
 	}

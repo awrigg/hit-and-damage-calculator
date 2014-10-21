@@ -29,7 +29,9 @@ public class Attribute {
 	}
 	
 	public String printBonus() {
-		return bonus.toString();
+		if(bonus != null)
+			return bonus.toString();
+		return "";
 	}
 	
 	private void calculateBonus() {

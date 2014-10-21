@@ -19,6 +19,13 @@ public class AttributeTest {
 		
 		assertEquals("+3", str.printBonus());
 	}
+
+	@Test
+	public void printBonusShowldReturnEmptyWhenNoBonusAreSetTest() {
+		Attribute str = new Attribute();
+		
+		assertEquals("", str.printBonus());
+	}
 	
 	@Test
 	public void attributeEqualsTest() {

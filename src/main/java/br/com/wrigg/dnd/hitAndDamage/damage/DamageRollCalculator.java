@@ -14,8 +14,11 @@ public class DamageRollCalculator {
 		Attribute str = character.getStrength();
 		
 		int strBonus = 0;
-		if(str != null)		
-			strBonus = Integer.parseInt(str.printBonus());
+		if(str != null) {
+			String strBonusText = str.printBonus();
+			if(!"".equals(strBonusText))
+				strBonus = Integer.parseInt(strBonusText);
+		}
 		
 		List<Feat> feats = character.getFeats();
 		
@@ -23,7 +26,8 @@ public class DamageRollCalculator {
 		
 		int totalBonus = strBonus + featsBonus;
 		
-		damageRollBuilder.append("+" + totalBonus);
+		if(totalBonus > 0)
+			damageRollBuilder.append("+" + totalBonus);
 		
 		return damageRollBuilder.toString();
 	}
@@ -33,7 +37,8 @@ public class DamageRollCalculator {
 		
 		for (Feat feat : feats) {
 			String featDamageBonus = feat.printDamageBonus();
-			totalFeatsDamageBonus += Integer.parseInt(featDamageBonus);
+			if(!"".equals(featDamageBonus))
+				totalFeatsDamageBonus += Integer.parseInt(featDamageBonus);
 		}
 		
 		return totalFeatsDamageBonus;

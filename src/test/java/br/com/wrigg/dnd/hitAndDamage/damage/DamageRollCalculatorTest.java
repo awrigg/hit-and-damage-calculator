@@ -33,6 +33,21 @@ public class DamageRollCalculatorTest {
 	}
 	
 	@Test
+	public void showldReturnWeaponDamageWhenStrSetButWithoutBonusTest() {
+		Character character = new Character();
+		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		character.equip(weapon);
+		
+		Attribute str = new Attribute();
+		character.setStrength(str);
+		
+		DamageRollCalculator damageRollCalculator = new DamageRollCalculator();
+		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		
+		assertEquals("1D4", damageRoll);
+	}
+	
+	@Test
 	public void calculateWeaponAndStrengthDamageRollTest() {
 		Character character = new Character();
 		Weapon weapon = new Weapon("Kukri", new DiceType(4));
@@ -63,16 +78,15 @@ public class DamageRollCalculatorTest {
 		Attribute str = new Attribute(18);
 		character.setStrength(str);
 
+		Feat feat = new Feat("divineMetamagic", "Divine Metamagic", Feat.Type.FEATURE_DEPENDENT);
+		character.addFeat(feat);
+		
 		Attribute cha = new Attribute(21);
 		character.setCharisma(cha);
 
-		Feat feat = new Feat("divineMetamagic", "Divine Metamagic");
-		character.getFeats().add(feat);
-		
 		DamageRollCalculator damageRollCalculator = new DamageRollCalculator();
 		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
 		
 		assertEquals("1D4+9", damageRoll);
-		
 	}
 }
