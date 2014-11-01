@@ -1,4 +1,4 @@
-package br.com.wrigg.dnd.hitAndDamage;
+package br.com.wrigg.dnd.hitAndDamage.feat;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -8,6 +8,7 @@ import org.junit.Test;
 import br.com.wrigg.dnd.hitAndDamage.character.Attribute;
 import br.com.wrigg.dnd.hitAndDamage.character.Character;
 import br.com.wrigg.dnd.hitAndDamage.damage.DamageBonus;
+import br.com.wrigg.dnd.hitAndDamage.feat.Feat;
 
 public class FeatTest {
 

@@ -5,11 +5,11 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import br.com.wrigg.dnd.hitAndDamage.DiceType;
-import br.com.wrigg.dnd.hitAndDamage.Feat;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
 import br.com.wrigg.dnd.hitAndDamage.character.Attribute;
 import br.com.wrigg.dnd.hitAndDamage.character.Character;
 import br.com.wrigg.dnd.hitAndDamage.damage.DamageRollCalculator;
+import br.com.wrigg.dnd.hitAndDamage.feat.Feat;
 
 public class DamageRollCalculatorTest {
 

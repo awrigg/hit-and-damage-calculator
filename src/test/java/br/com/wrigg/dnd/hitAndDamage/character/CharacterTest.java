@@ -8,8 +8,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import br.com.wrigg.dnd.hitAndDamage.DiceType;
-import br.com.wrigg.dnd.hitAndDamage.Feat;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
+import br.com.wrigg.dnd.hitAndDamage.feat.Feat;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CharacterTest {

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-import br.com.wrigg.dnd.hitAndDamage.Feat;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
+import br.com.wrigg.dnd.hitAndDamage.feat.Feat;
 
 public class Character extends Observable {
 	
@@ -63,7 +63,7 @@ public class Character extends Observable {
 	@Override
 	public boolean equals(Object character) {
 		Character characterToCompare = (Character) character;
-		if(this.weapon.equals(characterToCompare.getWeapon())) {
+		if((this.weapon == null && characterToCompare.getWeapon() == null) || this.weapon.equals(characterToCompare.getWeapon())) {
 			if((this.strength == null && characterToCompare.getStrength() == null) || this.strength.equals(characterToCompare.getStrength()))
 				if((this.charisma == null && characterToCompare.getCharisma() == null) || this.charisma.equals(characterToCompare.getCharisma()))
 					if((this.feats != null && characterToCompare.getFeats() != null) && this.feats.equals(characterToCompare.getFeats()))

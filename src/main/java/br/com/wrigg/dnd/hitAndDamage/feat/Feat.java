@@ -1,4 +1,4 @@
-package br.com.wrigg.dnd.hitAndDamage;
+package br.com.wrigg.dnd.hitAndDamage.feat;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,9 +2,9 @@ package br.com.wrigg.dnd.hitAndDamage.damage;
 
 import java.util.List;
 
-import br.com.wrigg.dnd.hitAndDamage.Feat;
 import br.com.wrigg.dnd.hitAndDamage.character.Attribute;
 import br.com.wrigg.dnd.hitAndDamage.character.Character;
+import br.com.wrigg.dnd.hitAndDamage.feat.Feat;
 
 public class DamageRollCalculator {
 	public String calculateDamageRoll(Character character) {
