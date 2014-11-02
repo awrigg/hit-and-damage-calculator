@@ -97,4 +97,11 @@ public class CharacterTest {
 
 		assertEquals(character1, character2);
 	}
+	
+	@Test
+	public void characterAddNullFeatShowldDoNothingTest() {
+		Character character = new Character();
+		
+		character.addFeat(null);
+	}
 }

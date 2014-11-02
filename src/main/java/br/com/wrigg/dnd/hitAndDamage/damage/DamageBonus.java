@@ -41,9 +41,11 @@ public class DamageBonus {
 	public boolean equals(Object damageBonus) {
 		DamageBonus damageBonusToCompare = (DamageBonus) damageBonus;
 		logger.debug("damageBonus [" + damageBonusToCompare + "]");
-		logger.debug("bonus [" + this.bonus + "] " + damageBonusToCompare.getBonus() + "]");
-		if((this.bonus == null && damageBonusToCompare.getBonus() == null) || this.bonus.equals(damageBonusToCompare.getBonus())) {
-			return true;
+		if (damageBonusToCompare != null) {
+			logger.debug("bonus [" + this.bonus + "] " + damageBonusToCompare.getBonus() + "]");
+			if((this.bonus == null && damageBonusToCompare.getBonus() == null) || this.bonus.equals(damageBonusToCompare.getBonus())) {
+				return true;
+			}
 		}
 		return false;
 	}

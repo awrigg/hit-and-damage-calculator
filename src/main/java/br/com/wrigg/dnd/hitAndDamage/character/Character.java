@@ -56,8 +56,10 @@ public class Character extends Observable {
 	}
 	
 	public void addFeat(Feat feat) {
-		feats.add(feat);
-		this.addObserver(feat);
+		if(feat != null) {
+			feats.add(feat);
+			this.addObserver(feat);
+		}
 	}
 	
 	@Override

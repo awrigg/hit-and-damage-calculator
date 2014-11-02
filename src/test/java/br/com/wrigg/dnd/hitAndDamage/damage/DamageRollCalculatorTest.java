@@ -89,4 +89,64 @@ public class DamageRollCalculatorTest {
 		
 		assertEquals("1D4+9", damageRoll);
 	}
+	
+	@Test
+	public void calculateWeaponStrengthAndPowerAttackDamageRollTest() {
+		Character character = new Character();
+		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		character.equip(weapon);
+
+		Attribute str = new Attribute(18);
+		character.setStrength(str);
+
+		Feat powerAttack = new Feat("powerAttack", "Power Attack", Feat.Type.VARIABLE_IMPUT);
+		powerAttack.setDamageBonus(new DamageBonus(5));
+		character.addFeat(powerAttack);
+		
+		DamageRollCalculator damageRollCalculator = new DamageRollCalculator();
+		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		
+		assertEquals("1D4+9", damageRoll);
+	}
+	
+	@Test
+	public void calculateWeaponStrengthAndPowerAttackAndDivineMetamagicDamageRollTest() {
+		Character character = new Character();
+		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		character.equip(weapon);
+
+		Attribute str = new Attribute(18);
+		character.setStrength(str);
+
+		Feat feat = new Feat("powerAttack", "Power Attack", Feat.Type.VARIABLE_IMPUT);
+		feat.setDamageBonus(new DamageBonus(5));
+		character.addFeat(feat);
+		
+		Feat divineMetamagic = new Feat("divineMetamagic", "Divine Metamagic", Feat.Type.FEATURE_DEPENDENT);
+		character.addFeat(divineMetamagic);
+		
+		Attribute cha = new Attribute(21);
+		character.setCharisma(cha);
+
+		DamageRollCalculator damageRollCalculator = new DamageRollCalculator();
+		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		
+		assertEquals("1D4+14", damageRoll);
+	}
+	
+	@Test
+	public void calculateMagicalWeaponWithStrengthDamageRollTest() {
+		Character character = new Character();
+		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		weapon.setBonus(new DamageBonus(1));
+		character.equip(weapon);
+
+		Attribute str = new Attribute(18);
+		character.setStrength(str);
+
+		DamageRollCalculator damageRollCalculator = new DamageRollCalculator();
+		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		
+		assertEquals("1D4+5", damageRoll);
+	}
 }

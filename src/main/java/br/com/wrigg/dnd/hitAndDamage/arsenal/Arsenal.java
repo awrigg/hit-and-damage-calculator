@@ -16,6 +16,7 @@ public class Arsenal {
 		weapons.put("Long Sword", weapon2);
 	}
 	
+	//FIXME a arma deveria ser buscada pelo ID
 	public Weapon findWeaponByName(String weaponName) {		
 		return weapons.get(weaponName);
 	}

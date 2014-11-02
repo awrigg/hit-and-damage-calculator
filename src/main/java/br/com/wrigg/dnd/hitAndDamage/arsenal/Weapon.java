@@ -3,6 +3,7 @@ package br.com.wrigg.dnd.hitAndDamage.arsenal;
 import org.apache.log4j.Logger;
 
 import br.com.wrigg.dnd.hitAndDamage.DiceType;
+import br.com.wrigg.dnd.hitAndDamage.damage.DamageBonus;
 
 public class Weapon {
 	private static Logger log = Logger.getLogger(Weapon.class);
@@ -11,6 +12,7 @@ public class Weapon {
 
 	private int quantity;
 	private String name;
+	private DamageBonus bonus;
 
 	public Weapon() {		
 	}
@@ -62,8 +64,10 @@ public class Weapon {
 		Weapon weaponToCompare = (Weapon) weapon;
 		if((this.diceType == null && weaponToCompare.getDiceType() == null) || this.diceType.equals(weaponToCompare.getDiceType())) {
 			if((this.name == null && weaponToCompare.getName() == null) || this.name.equals(weaponToCompare.getName())) {
-				if(this.quantity == weaponToCompare.quantity) {
-					return true;
+				if((this.bonus == null && weaponToCompare.getBonus() == null) || (this.bonus != null && this.bonus.equals(weaponToCompare.getBonus()))) {
+					if(this.quantity == weaponToCompare.quantity) {
+						return true;
+					}
 				}
 			}
 		} 
@@ -78,5 +82,13 @@ public class Weapon {
 		} else {
 			return super.hashCode();
 		}
+	}
+
+	public DamageBonus getBonus() {
+		return bonus;
+	}
+
+	public void setBonus(DamageBonus bonus) {
+		this.bonus = bonus;
 	}
 }
