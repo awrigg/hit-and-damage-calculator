@@ -5,13 +5,10 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import br.com.wrigg.dnd.hitAndDamage.Type;
 import br.com.wrigg.dnd.hitAndDamage.damage.DamageBonus;
 
 public class Feat implements Observer {
-	public enum Type {
-		VARIABLE_IMPUT, FEATURE_DEPENDENT 
-	}
-	
 	private String id;
 
 	private String name;
@@ -95,10 +92,9 @@ public class Feat implements Observer {
 		return "";
 	}
 
-	@Override
 	public void update(Observable character, Object feature) {
 		//TODO pensar num pattern para deixar mais bonito [factoryMethod]
-		if(Feat.Type.FEATURE_DEPENDENT.equals(type)) {
+		if(Type.FEATURE_DEPENDENT.equals(type)) {
 			if(feature != null) {
 				if(damageBonus != null)
 					damageBonus.update(feature);

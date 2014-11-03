@@ -3,14 +3,16 @@ package br.com.wrigg.dnd.hitAndDamage.feat;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.wrigg.dnd.hitAndDamage.Type;
+
 
 public class FeatCatalog {
 	private Map<String, Feat> feats = new HashMap<String, Feat>();  
 
 	public FeatCatalog() {
-		Feat divineMetamagic = new Feat("divineMetamagic", "Divine Metamagic", Feat.Type.FEATURE_DEPENDENT);
-		Feat powerAttack = new Feat("powerAttack", "Power Attack", Feat.Type.VARIABLE_IMPUT);
-		Feat knowledgeDevotion = new Feat("knowledgeDevotion", "Knowledge Devotion", Feat.Type.VARIABLE_IMPUT);
+		Feat divineMetamagic = new Feat("divineMetamagic", "Divine Metamagic", Type.FEATURE_DEPENDENT);
+		Feat powerAttack = new Feat("powerAttack", "Power Attack", Type.VARIABLE_IMPUT);
+		Feat knowledgeDevotion = new Feat("knowledgeDevotion", "Knowledge Devotion", Type.VARIABLE_IMPUT);
 		
 		feats.put("divineMetamagic", divineMetamagic);
 		feats.put("powerAttack", powerAttack);

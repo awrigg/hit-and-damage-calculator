@@ -3,7 +3,6 @@ package br.com.wrigg.dnd.hitAndDamage.damage;
 import org.apache.log4j.Logger;
 
 import br.com.wrigg.dnd.hitAndDamage.Bonus;
-import br.com.wrigg.dnd.hitAndDamage.character.Attribute;
 
 public class DamageBonus {
 	private static final Logger logger = Logger.getLogger(DamageBonus.class);
@@ -33,8 +32,10 @@ public class DamageBonus {
 	}
 
 	public void update(Object feature) {
-		Attribute attribute = (Attribute) feature;
-		bonus = attribute.getBonus();
+		DamageBonusByFeature damageBonusByFeature = new DamageBonusByFeatureFactoryMethod();
+		
+		String bonusValue = damageBonusByFeature.execute(feature);
+		bonus = new Bonus(Integer.parseInt(bonusValue));
 	}
 	
 	@Override

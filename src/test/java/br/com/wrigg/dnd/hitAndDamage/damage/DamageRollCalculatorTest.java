@@ -5,11 +5,13 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import br.com.wrigg.dnd.hitAndDamage.DiceType;
+import br.com.wrigg.dnd.hitAndDamage.Type;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
 import br.com.wrigg.dnd.hitAndDamage.character.Attribute;
+import br.com.wrigg.dnd.hitAndDamage.character.CasterLevel;
 import br.com.wrigg.dnd.hitAndDamage.character.Character;
-import br.com.wrigg.dnd.hitAndDamage.damage.DamageRollCalculator;
 import br.com.wrigg.dnd.hitAndDamage.feat.Feat;
+import br.com.wrigg.dnd.hitAndDamage.spell.Spell;
 
 public class DamageRollCalculatorTest {
 
@@ -78,7 +80,7 @@ public class DamageRollCalculatorTest {
 		Attribute str = new Attribute(18);
 		character.setStrength(str);
 
-		Feat feat = new Feat("divineMetamagic", "Divine Metamagic", Feat.Type.FEATURE_DEPENDENT);
+		Feat feat = new Feat("divineMetamagic", "Divine Metamagic", Type.FEATURE_DEPENDENT);
 		character.addFeat(feat);
 		
 		Attribute cha = new Attribute(21);
@@ -99,7 +101,7 @@ public class DamageRollCalculatorTest {
 		Attribute str = new Attribute(18);
 		character.setStrength(str);
 
-		Feat powerAttack = new Feat("powerAttack", "Power Attack", Feat.Type.VARIABLE_IMPUT);
+		Feat powerAttack = new Feat("powerAttack", "Power Attack", Type.VARIABLE_IMPUT);
 		powerAttack.setDamageBonus(new DamageBonus(5));
 		character.addFeat(powerAttack);
 		
@@ -118,11 +120,11 @@ public class DamageRollCalculatorTest {
 		Attribute str = new Attribute(18);
 		character.setStrength(str);
 
-		Feat feat = new Feat("powerAttack", "Power Attack", Feat.Type.VARIABLE_IMPUT);
+		Feat feat = new Feat("powerAttack", "Power Attack", Type.VARIABLE_IMPUT);
 		feat.setDamageBonus(new DamageBonus(5));
 		character.addFeat(feat);
 		
-		Feat divineMetamagic = new Feat("divineMetamagic", "Divine Metamagic", Feat.Type.FEATURE_DEPENDENT);
+		Feat divineMetamagic = new Feat("divineMetamagic", "Divine Metamagic", Type.FEATURE_DEPENDENT);
 		character.addFeat(divineMetamagic);
 		
 		Attribute cha = new Attribute(21);
@@ -148,5 +150,25 @@ public class DamageRollCalculatorTest {
 		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
 		
 		assertEquals("1D4+5", damageRoll);
+	}
+	
+	@Test
+	public void calculateSpellWithWeaponAndStrengthDamageRollTest() {
+		Character character = new Character();
+		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		character.equip(weapon);
+		
+		Attribute str = new Attribute(18);
+		character.setStrength(str);
+		
+		Spell divineFavor = new Spell("divineFavor", "Divine Favor", Type.FEATURE_DEPENDENT);
+		character.castSpell(divineFavor);
+		character.setCasterLevel(new CasterLevel(1));
+		
+		DamageRollCalculator damageRollCalculator = new DamageRollCalculator();
+		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		
+		assertEquals("1D4+5", damageRoll);
+		
 	}
 }

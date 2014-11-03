@@ -6,15 +6,20 @@ import java.util.Observable;
 
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
 import br.com.wrigg.dnd.hitAndDamage.feat.Feat;
+import br.com.wrigg.dnd.hitAndDamage.spell.Spell;
 
 public class Character extends Observable {
 	
 	private Attribute strength;
 	private Attribute charisma;
+	
+	private CasterLevel casterLevel;
 
 	private Weapon weapon;
 	
 	private List<Feat> feats = new ArrayList<Feat>();
+	
+	private List<Spell> spells = new ArrayList<Spell>();
 	
 	public void equip(Weapon weapon) {
 		setWeapon(weapon);		
@@ -62,14 +67,42 @@ public class Character extends Observable {
 		}
 	}
 	
+	public void castSpell(Spell spell) {
+		if(spell != null) {
+			spells.add(spell);
+			this.addObserver(spell);
+		}
+	}
+	
+	public List<Spell> getSpells() {
+		return spells;
+	}
+
+	public void setSpells(List<Spell> spells) {
+		this.spells = spells;
+	}
+	
+	public CasterLevel getCasterLevel() {
+		return casterLevel;
+	}
+
+	public void setCasterLevel(CasterLevel casterLevel) {
+		this.casterLevel = casterLevel;
+		
+		setChanged();
+        notifyObservers(casterLevel);
+	}
+
 	@Override
 	public boolean equals(Object character) {
 		Character characterToCompare = (Character) character;
 		if((this.weapon == null && characterToCompare.getWeapon() == null) || this.weapon.equals(characterToCompare.getWeapon())) {
 			if((this.strength == null && characterToCompare.getStrength() == null) || this.strength.equals(characterToCompare.getStrength()))
 				if((this.charisma == null && characterToCompare.getCharisma() == null) || this.charisma.equals(characterToCompare.getCharisma()))
-					if((this.feats != null && characterToCompare.getFeats() != null) && this.feats.equals(characterToCompare.getFeats()))
-						return true;
+					if((this.feats == null && characterToCompare.getFeats() == null) || this.feats.equals(characterToCompare.getFeats()))
+						if((this.spells == null && characterToCompare.getSpells() == null) || this.spells.equals(characterToCompare.getSpells()))
+							if((this.casterLevel == null && characterToCompare.getCasterLevel() == null) || (this.casterLevel != null && this.casterLevel.equals(characterToCompare.getSpells())))
+								return true;
 		}
 		return false;
 	}

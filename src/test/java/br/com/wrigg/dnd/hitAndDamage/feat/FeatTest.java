@@ -5,16 +5,16 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
+import br.com.wrigg.dnd.hitAndDamage.Type;
 import br.com.wrigg.dnd.hitAndDamage.character.Attribute;
 import br.com.wrigg.dnd.hitAndDamage.character.Character;
 import br.com.wrigg.dnd.hitAndDamage.damage.DamageBonus;
-import br.com.wrigg.dnd.hitAndDamage.feat.Feat;
 
 public class FeatTest {
 
 	@Test
 	public void printDivineMetamagicDamageBonusTest() {
-		Feat feat = new Feat("divineMetamagic", "Divine Metamagic", Feat.Type.FEATURE_DEPENDENT);
+		Feat feat = new Feat("divineMetamagic", "Divine Metamagic", Type.FEATURE_DEPENDENT);
 
 		Character character = new Character();
 		character.addFeat(feat);
@@ -70,15 +70,15 @@ public class FeatTest {
 	
 	@Test
 	public void featEqualsShowldMatchTypeTest() {
-		Feat feat1 = new Feat("divineMetamagic", "Divine Metamagic", Feat.Type.FEATURE_DEPENDENT);
+		Feat feat1 = new Feat("divineMetamagic", "Divine Metamagic", Type.FEATURE_DEPENDENT);
 
 		Feat feat2 = new Feat("divineMetamagic", "Divine Metamagic");
 
 		assertNotEquals(feat1, feat2);
 
-		feat1 = new Feat("divineMetamagic", "Divine Metamagic", Feat.Type.FEATURE_DEPENDENT);
+		feat1 = new Feat("divineMetamagic", "Divine Metamagic", Type.FEATURE_DEPENDENT);
 		
-		feat2 = new Feat("divineMetamagic", "Divine Metamagic", Feat.Type.FEATURE_DEPENDENT);
+		feat2 = new Feat("divineMetamagic", "Divine Metamagic", Type.FEATURE_DEPENDENT);
 
 		assertEquals(feat1, feat2);
 	}
