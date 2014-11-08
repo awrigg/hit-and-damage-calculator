@@ -1,6 +1,6 @@
 package br.com.wrigg.dnd.hitAndDamage.damage;
 
-import br.com.wrigg.dnd.hitAndDamage.character.CasterLevel;
+import br.com.wrigg.dnd.hitAndDamage.spell.CasterLevel;
 
 public class DamageBonusByCasterLevelFactoryMethod implements DamageBonusByFeature {
 

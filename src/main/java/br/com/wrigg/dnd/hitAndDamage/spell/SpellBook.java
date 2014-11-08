@@ -3,12 +3,14 @@ package br.com.wrigg.dnd.hitAndDamage.spell;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.wrigg.dnd.hitAndDamage.Type;
+
 public class SpellBook {
 	
 	private Map<String, Spell> spells = new HashMap<String, Spell>();  
 
 	public SpellBook() {
-		Spell divineFavor = new Spell("divineFavor", "Divine Favor");
+		Spell divineFavor = new Spell("divineFavor", "Divine Favor", Type.FEATURE_DEPENDENT);
 		
 		spells.put("divineFavor", divineFavor);
 	}

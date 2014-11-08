@@ -1,4 +1,4 @@
-package br.com.wrigg.dnd.hitAndDamage.character;
+package br.com.wrigg.dnd.hitAndDamage.spell;
 
 public class CasterLevel {
 

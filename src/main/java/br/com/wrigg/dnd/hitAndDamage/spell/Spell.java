@@ -67,7 +67,7 @@ public class Spell implements Observer {
 	//FIXME apenas para os testes iniciais
 	public List<Spell> values() {
 		List<Spell> spells = new ArrayList<Spell>();
-		Spell divineFavor = new Spell("divineFavor", "Divine Favor");
+		Spell divineFavor = new Spell("divineFavor", "Divine Favor", Type.FEATURE_DEPENDENT);
 		spells.add(divineFavor);
 
 		return spells;

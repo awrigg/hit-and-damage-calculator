@@ -35,7 +35,8 @@ public class DamageBonus {
 		DamageBonusByFeature damageBonusByFeature = new DamageBonusByFeatureFactoryMethod();
 		
 		String bonusValue = damageBonusByFeature.execute(feature);
-		bonus = new Bonus(Integer.parseInt(bonusValue));
+		if(bonusValue != null && !"".equals(bonusValue))
+			bonus = new Bonus(Integer.parseInt(bonusValue));
 	}
 	
 	@Override

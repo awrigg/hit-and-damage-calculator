@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import br.com.wrigg.dnd.hitAndDamage.Type;
-import br.com.wrigg.dnd.hitAndDamage.character.CasterLevel;
 import br.com.wrigg.dnd.hitAndDamage.character.Character;
 
 public class SpellTest {

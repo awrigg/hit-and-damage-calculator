@@ -8,9 +8,9 @@ import br.com.wrigg.dnd.hitAndDamage.DiceType;
 import br.com.wrigg.dnd.hitAndDamage.Type;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
 import br.com.wrigg.dnd.hitAndDamage.character.Attribute;
-import br.com.wrigg.dnd.hitAndDamage.character.CasterLevel;
 import br.com.wrigg.dnd.hitAndDamage.character.Character;
 import br.com.wrigg.dnd.hitAndDamage.feat.Feat;
+import br.com.wrigg.dnd.hitAndDamage.spell.CasterLevel;
 import br.com.wrigg.dnd.hitAndDamage.spell.Spell;
 
 public class DamageRollCalculatorTest {

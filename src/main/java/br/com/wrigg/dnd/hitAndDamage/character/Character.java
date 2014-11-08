@@ -6,6 +6,7 @@ import java.util.Observable;
 
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
 import br.com.wrigg.dnd.hitAndDamage.feat.Feat;
+import br.com.wrigg.dnd.hitAndDamage.spell.CasterLevel;
 import br.com.wrigg.dnd.hitAndDamage.spell.Spell;
 
 public class Character extends Observable {
@@ -101,7 +102,7 @@ public class Character extends Observable {
 				if((this.charisma == null && characterToCompare.getCharisma() == null) || this.charisma.equals(characterToCompare.getCharisma()))
 					if((this.feats == null && characterToCompare.getFeats() == null) || this.feats.equals(characterToCompare.getFeats()))
 						if((this.spells == null && characterToCompare.getSpells() == null) || this.spells.equals(characterToCompare.getSpells()))
-							if((this.casterLevel == null && characterToCompare.getCasterLevel() == null) || (this.casterLevel != null && this.casterLevel.equals(characterToCompare.getSpells())))
+							if((this.casterLevel == null && characterToCompare.getCasterLevel() == null) || (this.casterLevel != null && this.casterLevel.equals(characterToCompare.getCasterLevel())))
 								return true;
 		}
 		return false;

@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import br.com.wrigg.dnd.hitAndDamage.character.CasterLevel;
+import br.com.wrigg.dnd.hitAndDamage.spell.CasterLevel;
 
 @RunWith(JUnit4.class)
 public class DamageBonusByCasterLevelFeatureFactoryMethodTest {
