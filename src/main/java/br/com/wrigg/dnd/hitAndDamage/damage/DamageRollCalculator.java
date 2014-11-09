@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import br.com.wrigg.dnd.hitAndDamage._class.ClassFeature;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
 import br.com.wrigg.dnd.hitAndDamage.character.Attribute;
 import br.com.wrigg.dnd.hitAndDamage.character.Character;
@@ -41,7 +42,11 @@ public class DamageRollCalculator {
 		
 		int spellsBonus = calculateSpellDamageBonus(spells);
 		
-		int totalBonus = weaponBonus + strBonus + featsBonus + spellsBonus;
+		List<ClassFeature> classFeatures = character.getClassFeatures();
+		
+		int classFeatureBonus = calculateClassFeatureDamageBonus(classFeatures);
+		
+		int totalBonus = weaponBonus + strBonus + featsBonus + spellsBonus + classFeatureBonus;
 		
 		if(totalBonus > 0)
 			damageRollBuilder.append("+" + totalBonus);
@@ -73,5 +78,18 @@ public class DamageRollCalculator {
 		}
 		
 		return totalSpellsDamageBonus;
+	}
+	
+	private int calculateClassFeatureDamageBonus(List<ClassFeature> classFeatures) {
+		int totalclassFeatureDamageBonus = 0; 
+		
+		for (ClassFeature classFeature : classFeatures) {
+			String classFeatureDamageBonus = classFeature.printDamageBonus();
+			logger.debug("feat [" + classFeature.getName() + "] bonus [" + classFeatureDamageBonus + "]");
+			if(!"".equals(classFeatureDamageBonus))
+				totalclassFeatureDamageBonus += Integer.parseInt(classFeatureDamageBonus);
+		}
+		
+		return totalclassFeatureDamageBonus;
 	}
 }

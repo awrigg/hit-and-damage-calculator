@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+import br.com.wrigg.dnd.hitAndDamage._class.ClassFeature;
+import br.com.wrigg.dnd.hitAndDamage._class.TurnLevel;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
 import br.com.wrigg.dnd.hitAndDamage.feat.Feat;
 import br.com.wrigg.dnd.hitAndDamage.spell.CasterLevel;
@@ -21,6 +23,10 @@ public class Character extends Observable {
 	private List<Feat> feats = new ArrayList<Feat>();
 	
 	private List<Spell> spells = new ArrayList<Spell>();
+	
+	private List<ClassFeature> classFeatures = new ArrayList<ClassFeature>();
+
+	private TurnLevel turnLevel;
 	
 	public void equip(Weapon weapon) {
 		setWeapon(weapon);		
@@ -61,7 +67,7 @@ public class Character extends Observable {
 		this.feats = feats;
 	}
 	
-	public void addFeat(Feat feat) {
+	public void activateFeat(Feat feat) {
 		if(feat != null) {
 			feats.add(feat);
 			this.addObserver(feat);
@@ -72,6 +78,13 @@ public class Character extends Observable {
 		if(spell != null) {
 			spells.add(spell);
 			this.addObserver(spell);
+		}
+	}
+	
+	public void activateClassFeature(ClassFeature classFeature) {
+		if(classFeature != null) {
+			classFeatures.add(classFeature);
+			this.addObserver(classFeature);
 		}
 	}
 	
@@ -94,6 +107,26 @@ public class Character extends Observable {
         notifyObservers(casterLevel);
 	}
 
+	
+	public List<ClassFeature> getClassFeatures() {
+		return classFeatures;
+	}
+
+	public void setClassFeatures(List<ClassFeature> classFeatures) {
+		this.classFeatures = classFeatures;
+	}
+	
+	public void setTurnLevel(TurnLevel turnLevel) {
+		this.turnLevel = turnLevel;
+		
+		setChanged();
+        notifyObservers(turnLevel);
+	}
+
+	public TurnLevel getTurnLevel() {
+		return turnLevel;
+	}
+		
 	@Override
 	public boolean equals(Object character) {
 		Character characterToCompare = (Character) character;
@@ -103,7 +136,9 @@ public class Character extends Observable {
 					if((this.feats == null && characterToCompare.getFeats() == null) || this.feats.equals(characterToCompare.getFeats()))
 						if((this.spells == null && characterToCompare.getSpells() == null) || this.spells.equals(characterToCompare.getSpells()))
 							if((this.casterLevel == null && characterToCompare.getCasterLevel() == null) || (this.casterLevel != null && this.casterLevel.equals(characterToCompare.getCasterLevel())))
-								return true;
+								if((this.turnLevel == null && characterToCompare.getTurnLevel() == null) || (this.turnLevel != null && this.turnLevel.equals(characterToCompare.getTurnLevel())))
+									if((this.classFeatures == null && characterToCompare.getClassFeatures() == null) || (this.classFeatures != null && this.classFeatures.equals(characterToCompare.getClassFeatures())))
+										return true;
 		}
 		return false;
 	}

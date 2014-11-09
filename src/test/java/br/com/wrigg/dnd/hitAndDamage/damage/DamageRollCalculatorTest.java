@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import br.com.wrigg.dnd.hitAndDamage.DiceType;
 import br.com.wrigg.dnd.hitAndDamage.Type;
+import br.com.wrigg.dnd.hitAndDamage._class.ClassFeature;
+import br.com.wrigg.dnd.hitAndDamage._class.TurnLevel;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
 import br.com.wrigg.dnd.hitAndDamage.character.Attribute;
 import br.com.wrigg.dnd.hitAndDamage.character.Character;
@@ -81,7 +83,7 @@ public class DamageRollCalculatorTest {
 		character.setStrength(str);
 
 		Feat feat = new Feat("divineMetamagic", "Divine Metamagic", Type.FEATURE_DEPENDENT);
-		character.addFeat(feat);
+		character.activateFeat(feat);
 		
 		Attribute cha = new Attribute(21);
 		character.setCharisma(cha);
@@ -103,7 +105,7 @@ public class DamageRollCalculatorTest {
 
 		Feat powerAttack = new Feat("powerAttack", "Power Attack", Type.VARIABLE_IMPUT);
 		powerAttack.setDamageBonus(new DamageBonus(5));
-		character.addFeat(powerAttack);
+		character.activateFeat(powerAttack);
 		
 		DamageRollCalculator damageRollCalculator = new DamageRollCalculator();
 		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
@@ -122,10 +124,10 @@ public class DamageRollCalculatorTest {
 
 		Feat feat = new Feat("powerAttack", "Power Attack", Type.VARIABLE_IMPUT);
 		feat.setDamageBonus(new DamageBonus(5));
-		character.addFeat(feat);
+		character.activateFeat(feat);
 		
 		Feat divineMetamagic = new Feat("divineMetamagic", "Divine Metamagic", Type.FEATURE_DEPENDENT);
-		character.addFeat(divineMetamagic);
+		character.activateFeat(divineMetamagic);
 		
 		Attribute cha = new Attribute(21);
 		character.setCharisma(cha);
@@ -169,6 +171,27 @@ public class DamageRollCalculatorTest {
 		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
 		
 		assertEquals("1D4+5", damageRoll);
+		
+	}
+	
+	@Test
+	public void calculateSmiteWithWeaponAndStrengthDamageRollTest() {
+		Character character = new Character();
+		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		character.equip(weapon);
+		
+		Attribute str = new Attribute(18);
+		character.setStrength(str);
+		
+		ClassFeature smite = new ClassFeature("smite", "Smite", Type.FEATURE_DEPENDENT);
+		character.activateClassFeature(smite);
+		
+		character.setTurnLevel(new TurnLevel(5));
+		
+		DamageRollCalculator damageRollCalculator = new DamageRollCalculator();
+		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		
+		assertEquals("1D4+9", damageRoll);
 		
 	}
 }

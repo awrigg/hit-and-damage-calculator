@@ -17,7 +17,7 @@ public class FeatTest {
 		Feat feat = new Feat("divineMetamagic", "Divine Metamagic", Type.FEATURE_DEPENDENT);
 
 		Character character = new Character();
-		character.addFeat(feat);
+		character.activateFeat(feat);
 		
 		Attribute cha = new Attribute(21);
 		character.setCharisma(cha);
@@ -39,7 +39,7 @@ public class FeatTest {
 		feat.setDamageBonus(damageBonus);
 
 		Character character = new Character();
-		character.addFeat(feat);
+		character.activateFeat(feat);
 
 		String featBonusDamage = feat.printDamageBonus();
 		assertEquals("+4", featBonusDamage.toString());
