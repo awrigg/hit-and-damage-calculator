@@ -10,27 +10,41 @@ public class Weapon {
 
 	private DiceType diceType;
 
-	private int quantity;
+	private int diceQuantity;
 	private String name;
 	private DamageBonus bonus;
+	private int criticalFactor;
 
 	public Weapon() {		
 	}
 	
 	public Weapon(DiceType diceType) {
 		this.diceType = diceType;
-		this.quantity = 1;
+		this.diceQuantity = 1;
 	}
 
 	public Weapon(DiceType diceType, int quantity) {
 		this.diceType = diceType;
-		this.quantity = quantity;
+		this.diceQuantity = quantity;
 	}
 
 	public Weapon(String name, DiceType diceType) {
 		this.name = name;
 		this.diceType = diceType;
-		this.quantity = 1;
+		this.diceQuantity = 1;
+	}
+
+	public Weapon(DiceType diceType, int diceQuantity, int criticalFactor) {
+		this.diceType = diceType;
+		this.diceQuantity = diceQuantity;
+		this.criticalFactor = criticalFactor;
+	}
+	
+	public Weapon(String name, DiceType diceType, int diceQuantity, int criticalFactor) {
+		this.name = name;
+		this.diceType = diceType;
+		this.diceQuantity = diceQuantity;
+		this.criticalFactor = criticalFactor;
 	}
 
 	public DiceType getDiceType() {
@@ -38,8 +52,8 @@ public class Weapon {
 	}
 	
 	public String printDamageRoll() {
-		log.debug("qtd [" + quantity + "] diceType [" + diceType + "]");
-		return quantity + diceType.toString();
+		log.debug("qtd [" + diceQuantity + "] diceType [" + diceType + "]");
+		return diceQuantity + diceType.toString();
 	}
 
 	public String getName() {
@@ -53,8 +67,8 @@ public class Weapon {
 	//FIXME metodo apenas para os testes iniciais
 	public Weapon[] values() {
 		Weapon[] weapons = new Weapon[3];
-		weapons[0] = new Weapon("Kukri", new DiceType(4));
-		weapons[1] = new Weapon("Long Sword", new DiceType(8));
+		weapons[0] = new Weapon("Kukri", new DiceType(4), 1, 2);
+		weapons[1] = new Weapon("Long Sword", new DiceType(8), 1, 2);
 		return weapons;
 	}
 
@@ -65,7 +79,7 @@ public class Weapon {
 		if((this.diceType == null && weaponToCompare.getDiceType() == null) || this.diceType.equals(weaponToCompare.getDiceType())) {
 			if((this.name == null && weaponToCompare.getName() == null) || this.name.equals(weaponToCompare.getName())) {
 				if((this.bonus == null && weaponToCompare.getBonus() == null) || (this.bonus != null && this.bonus.equals(weaponToCompare.getBonus()))) {
-					if(this.quantity == weaponToCompare.quantity) {
+					if(this.diceQuantity == weaponToCompare.diceQuantity) {
 						return true;
 					}
 				}
@@ -90,5 +104,18 @@ public class Weapon {
 
 	public void setBonus(DamageBonus bonus) {
 		this.bonus = bonus;
+	}
+
+	public int getCriticalFactor() {		
+		return criticalFactor;
+	}
+	
+	public Object printCriticalDamageRoll() {
+		log.debug("qtd [" + diceQuantity + "] diceType [" + diceType + "]");
+		log.debug("critical factor [" + criticalFactor + "]");
+		
+		int diceQuantity = criticalFactor * this.diceQuantity; 
+		
+		return diceQuantity + diceType.toString();
 	}
 }

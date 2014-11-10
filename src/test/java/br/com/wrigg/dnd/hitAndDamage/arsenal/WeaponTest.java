@@ -27,7 +27,7 @@ public class WeaponTest {
 		Weapon weapon = new Weapon(diceType, 2);
 				
 		assertEquals(diceType, ReflectionTestUtils.getField(weapon, "diceType"));
-		assertEquals(2, ReflectionTestUtils.getField(weapon, "quantity"));
+		assertEquals(2, ReflectionTestUtils.getField(weapon, "diceQuantity"));
 	}
 	
 	@Test
@@ -47,6 +47,24 @@ public class WeaponTest {
 				
 		assertEquals("2D6", weapon.printDamageRoll());
 
+	}
+	
+	@Test
+	public void printCriticalDamageRollTest() {
+		DiceType diceType = new DiceType(4);
+		Weapon weapon = new Weapon(diceType, 1, 2);
+				
+		assertEquals("2D4", weapon.printCriticalDamageRoll());
+		
+		diceType = new DiceType(8);
+		weapon = new Weapon(diceType, 1, 2);
+				
+		assertEquals("2D8", weapon.printCriticalDamageRoll());
+		
+		diceType = new DiceType(6);
+		weapon = new Weapon(diceType, 2, 2);
+				
+		assertEquals("4D6", weapon.printCriticalDamageRoll());
 	}
 		
 	@Test

@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import br.com.wrigg.dnd.hitAndDamage.Type;
+import br.com.wrigg.dnd.hitAndDamage.character.Attribute;
 import br.com.wrigg.dnd.hitAndDamage.damage.DamageBonus;
 
 public class Feat implements Observer {
@@ -94,13 +95,15 @@ public class Feat implements Observer {
 
 	public void update(Observable character, Object feature) {
 		//TODO pensar num pattern para deixar mais bonito [factoryMethod]
-		if(Type.FEATURE_DEPENDENT.equals(type)) {
-			if(feature != null) {
-				if(damageBonus != null)
-					damageBonus.update(feature);
-				else {
-					damageBonus = new DamageBonus();
-					damageBonus.update(feature);
+		if(feature instanceof Attribute) {
+			if(Type.FEATURE_DEPENDENT.equals(type)) {
+				if(feature != null) {
+					if(damageBonus != null)
+						damageBonus.update(feature);
+					else {
+						damageBonus = new DamageBonus();
+						damageBonus.update(feature);
+					}
 				}
 			}
 		}
@@ -108,12 +111,14 @@ public class Feat implements Observer {
 	
 	@Override
 	public boolean equals(Object feat) {
-		Feat featToCompare = (Feat) feat;
-		if((this.name == null && featToCompare.getName() == null) || (this.name != null && this.name.equals(featToCompare.getName()))) {
-			if((this.id == null && featToCompare.getId() == null) || this.id.equals(featToCompare.getId()))
-				if((this.type == null && featToCompare.getType() == null) || this.type.equals(featToCompare.getType()))
-					if((this.damageBonus == null && featToCompare.getDamageBonus() == null) || (this.damageBonus != null && this.damageBonus.equals(featToCompare.getDamageBonus())))
-						return true;
+		if(feat instanceof Feat) {
+			Feat featToCompare = (Feat) feat;
+			if((this.name == null && featToCompare.getName() == null) || (this.name != null && this.name.equals(featToCompare.getName()))) {
+				if((this.id == null && featToCompare.getId() == null) || this.id.equals(featToCompare.getId()))
+					if((this.type == null && featToCompare.getType() == null) || this.type.equals(featToCompare.getType()))
+						if((this.damageBonus == null && featToCompare.getDamageBonus() == null) || (this.damageBonus != null && this.damageBonus.equals(featToCompare.getDamageBonus())))
+							return true;
+			}
 		}
 		return false;
 	}

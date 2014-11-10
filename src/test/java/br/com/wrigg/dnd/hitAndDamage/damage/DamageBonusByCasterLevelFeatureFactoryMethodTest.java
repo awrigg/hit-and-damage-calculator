@@ -39,5 +39,11 @@ public class DamageBonusByCasterLevelFeatureFactoryMethodTest {
 		
 		String damageBonus = damageBonusByCasterLevel.execute(casterLevel);
 		assertEquals("+1", damageBonus);
+		
+		casterLevel = new CasterLevel(2);
+		
+		damageBonus = damageBonusByCasterLevel.execute(casterLevel);
+		assertEquals("+1", damageBonus);
+
 	}
 }

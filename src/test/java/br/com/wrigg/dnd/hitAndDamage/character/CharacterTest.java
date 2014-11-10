@@ -1,6 +1,7 @@
 package br.com.wrigg.dnd.hitAndDamage.character;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import br.com.wrigg.dnd.hitAndDamage.DiceType;
+import br.com.wrigg.dnd.hitAndDamage.Type;
 import br.com.wrigg.dnd.hitAndDamage._class.ClassFeature;
 import br.com.wrigg.dnd.hitAndDamage._class.TurnLevel;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
@@ -163,6 +165,35 @@ public class CharacterTest {
 		character2.setTurnLevel(turnLevel2);
 
 		assertEquals(character1, character2);
+	}
+	
+	@Test
+	public void characterWithMoreThenOneFeatureDependentShouldNotReturnCastException() {
+		DiceType diceType1 = new DiceType(4);
+		Weapon weapon1 = new Weapon("Kukri", diceType1);
+		
+		Character character = new Character();
+		character.equip(weapon1);
+
+		Attribute str1 = new Attribute(18);
+		character.setStrength(str1);
+
+		ClassFeature smite1 = new ClassFeature("smite", "Smite", Type.FEATURE_DEPENDENT);
+		character.getClassFeatures().add(smite1);
+		
+		TurnLevel turnLevel1 = new TurnLevel(5);
+		character.setTurnLevel(turnLevel1);
+		
+		Spell divineFavor = new Spell("divineFavor", "Divine Favor", Type.FEATURE_DEPENDENT);
+		character.castSpell(divineFavor);
+		
+		Feat divineMight = new Feat("divineMight", "Divine Might", Type.FEATURE_DEPENDENT);
+		character.activateFeat(divineMight);
+		
+		Attribute cha = new Attribute(18);
+		character.setCharisma(cha);
+
+		assertTrue(true);
 	}
 	
 	@Test

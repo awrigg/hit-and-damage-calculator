@@ -15,70 +15,55 @@ import br.com.wrigg.dnd.hitAndDamage.feat.Feat;
 import br.com.wrigg.dnd.hitAndDamage.spell.CasterLevel;
 import br.com.wrigg.dnd.hitAndDamage.spell.Spell;
 
-public class DamageRollCalculatorTest {
+public class CriticalDamageRollCalculatorTest {
 
 	@Test
-	public void calculateWeaponDamageRollTest() {
+	public void calculateCriticalWeaponDamageRollTest() {
 		Character character = new Character();
-		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		Weapon weapon = new Weapon("Kukri", new DiceType(4), 1, 2);
 		character.equip(weapon);
 		
-		BasicDamageRollCalculator damageRollCalculator = new BasicDamageRollCalculator();
-		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		CriticalDamageRollCalculator criticaldamageRollCalculator = new CriticalDamageRollCalculator();
+		String damageRoll = criticaldamageRollCalculator.calculateDamageRoll(character);
 		
-		assertEquals("1D4", damageRoll);
+		assertEquals("2D4", damageRoll);
 		
-		weapon = new Weapon("Long Sword", new DiceType(8));
+		weapon = new Weapon("Long Sword", new DiceType(8), 1, 2);
 		character.equip(weapon);
 		
-		damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		damageRoll = criticaldamageRollCalculator.calculateDamageRoll(character);
 
-		assertEquals("1D8", damageRoll);
+		assertEquals("2D8", damageRoll);
 	}
 	
 	@Test
-	public void showldReturnWeaponDamageWhenStrSetButWithoutBonusTest() {
+	public void calculateCriticalWeaponAndStrengthDamageRollTest() {
 		Character character = new Character();
-		Weapon weapon = new Weapon("Kukri", new DiceType(4));
-		character.equip(weapon);
-		
-		Attribute str = new Attribute();
-		character.setStrength(str);
-		
-		BasicDamageRollCalculator damageRollCalculator = new BasicDamageRollCalculator();
-		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
-		
-		assertEquals("1D4", damageRoll);
-	}
-	
-	@Test
-	public void calculateWeaponAndStrengthDamageRollTest() {
-		Character character = new Character();
-		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		Weapon weapon = new Weapon("Kukri", new DiceType(4), 1, 2);
 		character.equip(weapon);
 
 		Attribute str = new Attribute(18);
 		character.setStrength(str);
 		
-		BasicDamageRollCalculator damageRollCalculator = new BasicDamageRollCalculator();
-		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		CriticalDamageRollCalculator criticalDamageRollCalculator = new CriticalDamageRollCalculator();
+		String damageRoll = criticalDamageRollCalculator.calculateDamageRoll(character);
 		
-		assertEquals("1D4+4", damageRoll);
+		assertEquals("2D4+8", damageRoll);
 		
-		weapon = new Weapon("Long Sword", new DiceType(8));
+		weapon = new Weapon("Long Sword", new DiceType(8), 1, 2);
 		character.equip(weapon);
 		
-		damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		damageRoll = criticalDamageRollCalculator.calculateDamageRoll(character);
 
-		assertEquals("1D8+4", damageRoll);
+		assertEquals("2D8+8", damageRoll);
 	}
 
 	@Test
 	public void calculateWeaponStrengthAndDivineMetamagicDamageRollTest() {
 		Character character = new Character();
-		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		Weapon weapon = new Weapon("Kukri", new DiceType(4), 1, 2);
 		character.equip(weapon);
-
+		
 		Attribute str = new Attribute(18);
 		character.setStrength(str);
 
@@ -88,16 +73,16 @@ public class DamageRollCalculatorTest {
 		Attribute cha = new Attribute(21);
 		character.setCharisma(cha);
 
-		BasicDamageRollCalculator damageRollCalculator = new BasicDamageRollCalculator();
-		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		CriticalDamageRollCalculator criticalDamageRollCalculator = new CriticalDamageRollCalculator();
+		String damageRoll = criticalDamageRollCalculator.calculateDamageRoll(character);
 		
-		assertEquals("1D4+9", damageRoll);
+		assertEquals("2D4+18", damageRoll);
 	}
 	
 	@Test
 	public void calculateWeaponStrengthAndPowerAttackDamageRollTest() {
 		Character character = new Character();
-		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		Weapon weapon = new Weapon("Kukri", new DiceType(4), 1, 2);
 		character.equip(weapon);
 
 		Attribute str = new Attribute(18);
@@ -107,16 +92,16 @@ public class DamageRollCalculatorTest {
 		powerAttack.setDamageBonus(new DamageBonus(5));
 		character.activateFeat(powerAttack);
 		
-		BasicDamageRollCalculator damageRollCalculator = new BasicDamageRollCalculator();
-		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		CriticalDamageRollCalculator criticalDamageRollCalculator = new CriticalDamageRollCalculator();
+		String damageRoll = criticalDamageRollCalculator.calculateDamageRoll(character);
 		
-		assertEquals("1D4+9", damageRoll);
+		assertEquals("2D4+18", damageRoll);
 	}
 	
 	@Test
 	public void calculateWeaponStrengthAndPowerAttackAndDivineMetamagicDamageRollTest() {
 		Character character = new Character();
-		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		Weapon weapon = new Weapon("Kukri", new DiceType(4), 1, 2);
 		character.equip(weapon);
 
 		Attribute str = new Attribute(18);
@@ -132,32 +117,32 @@ public class DamageRollCalculatorTest {
 		Attribute cha = new Attribute(21);
 		character.setCharisma(cha);
 
-		BasicDamageRollCalculator damageRollCalculator = new BasicDamageRollCalculator();
-		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		CriticalDamageRollCalculator criticalDamageRollCalculator = new CriticalDamageRollCalculator();
+		String damageRoll = criticalDamageRollCalculator.calculateDamageRoll(character);
 		
-		assertEquals("1D4+14", damageRoll);
+		assertEquals("2D4+28", damageRoll);
 	}
 	
 	@Test
 	public void calculateMagicalWeaponWithStrengthDamageRollTest() {
 		Character character = new Character();
-		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		Weapon weapon = new Weapon("Kukri", new DiceType(4), 1, 2);
 		weapon.setBonus(new DamageBonus(1));
 		character.equip(weapon);
 
 		Attribute str = new Attribute(18);
 		character.setStrength(str);
 
-		BasicDamageRollCalculator damageRollCalculator = new BasicDamageRollCalculator();
-		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		CriticalDamageRollCalculator criticalDamageRollCalculator = new CriticalDamageRollCalculator();
+		String damageRoll = criticalDamageRollCalculator.calculateDamageRoll(character);
 		
-		assertEquals("1D4+5", damageRoll);
+		assertEquals("2D4+10", damageRoll);
 	}
 	
 	@Test
 	public void calculateSpellWithWeaponAndStrengthDamageRollTest() {
 		Character character = new Character();
-		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		Weapon weapon = new Weapon("Kukri", new DiceType(4), 1, 2);
 		character.equip(weapon);
 		
 		Attribute str = new Attribute(18);
@@ -167,17 +152,17 @@ public class DamageRollCalculatorTest {
 		character.castSpell(divineFavor);
 		character.setCasterLevel(new CasterLevel(1));
 		
-		BasicDamageRollCalculator damageRollCalculator = new BasicDamageRollCalculator();
-		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		CriticalDamageRollCalculator criticalDamageRollCalculator = new CriticalDamageRollCalculator();
+		String damageRoll = criticalDamageRollCalculator.calculateDamageRoll(character);
 		
-		assertEquals("1D4+5", damageRoll);
+		assertEquals("2D4+10", damageRoll);
 		
 	}
 	
 	@Test
 	public void calculateSmiteWithWeaponAndStrengthDamageRollTest() {
 		Character character = new Character();
-		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		Weapon weapon = new Weapon("Kukri", new DiceType(4),1 , 2);
 		character.equip(weapon);
 		
 		Attribute str = new Attribute(18);
@@ -188,10 +173,10 @@ public class DamageRollCalculatorTest {
 		
 		character.setTurnLevel(new TurnLevel(5));
 		
-		BasicDamageRollCalculator damageRollCalculator = new BasicDamageRollCalculator();
-		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		CriticalDamageRollCalculator criticalDamageRollCalculator = new CriticalDamageRollCalculator();
+		String damageRoll = criticalDamageRollCalculator.calculateDamageRoll(character);
 		
-		assertEquals("1D4+9", damageRoll);
+		assertEquals("2D4+18", damageRoll);
 		
 	}
 }

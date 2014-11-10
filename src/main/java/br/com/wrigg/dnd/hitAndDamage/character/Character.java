@@ -29,7 +29,7 @@ public class Character extends Observable {
 	private TurnLevel turnLevel;
 	
 	public void equip(Weapon weapon) {
-		setWeapon(weapon);		
+		setWeapon(weapon);
 	}
 
 	public void setWeapon(Weapon weapon) {		
@@ -148,5 +148,4 @@ public class Character extends Observable {
 	public int hashCode() {
 		return this.getClass().hashCode();
 	}
-
 }

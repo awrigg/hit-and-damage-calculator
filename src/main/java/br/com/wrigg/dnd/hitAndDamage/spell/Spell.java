@@ -5,10 +5,15 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.apache.log4j.Logger;
+
 import br.com.wrigg.dnd.hitAndDamage.Type;
 import br.com.wrigg.dnd.hitAndDamage.damage.DamageBonus;
 
 public class Spell implements Observer {
+	
+	private static final Logger logger = Logger.getLogger(Spell.class);
+	
 	private String id;
 
 	private String name;
@@ -81,10 +86,12 @@ public class Spell implements Observer {
 	
 	@Override
 	public boolean equals(Object spell) {
-		Spell spellToCompare = (Spell) spell;
-		if((this.name == null && spellToCompare.getName() == null) || (this.name != null && this.name.equals(spellToCompare.getName()))) {
-			if((this.id == null && spellToCompare.getId() == null) || this.id.equals(spellToCompare.getId()))
-				return true;
+		if(spell instanceof Spell) {
+			Spell spellToCompare = (Spell) spell;
+			if((this.name == null && spellToCompare.getName() == null) || (this.name != null && this.name.equals(spellToCompare.getName()))) {
+				if((this.id == null && spellToCompare.getId() == null) || this.id.equals(spellToCompare.getId()))
+					return true;
+			}
 		}
 		return false;
 	}
@@ -96,16 +103,19 @@ public class Spell implements Observer {
 	}
 
 	public void update(Observable character, Object feature) {
+		logger.debug("spell update called type [" + type + "] feature [" + feature + "]");
 		//TODO pensar num pattern para deixar mais bonito [factoryMethod]
-		if(Type.FEATURE_DEPENDENT.equals(type)) {
-			if(feature != null) {
-				if(damageBonus != null)
-					damageBonus.update(feature);
-				else {
-					damageBonus = new DamageBonus();
-					damageBonus.update(feature);
+		if(feature instanceof CasterLevel) {
+			if(Type.FEATURE_DEPENDENT.equals(type)) {
+				if(feature != null) {
+					if(damageBonus != null)
+						damageBonus.update(feature);
+					else {
+						damageBonus = new DamageBonus();
+						damageBonus.update(feature);
+					}
 				}
 			}
-		}		
+		}
 	}
 }

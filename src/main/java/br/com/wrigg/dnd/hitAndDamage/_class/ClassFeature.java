@@ -82,26 +82,30 @@ public class ClassFeature implements Observer{
 
 	public void update(Observable character, Object feature) {
 		//TODO pensar num pattern para deixar mais bonito [factoryMethod]
-		if(Type.FEATURE_DEPENDENT.equals(type)) {
-			if(feature != null) {
-				if(damageBonus != null)
-					damageBonus.update(feature);
-				else {
-					damageBonus = new DamageBonus();
-					damageBonus.update(feature);
+		if(feature instanceof TurnLevel) {
+			if(Type.FEATURE_DEPENDENT.equals(type)) {
+				if(feature != null) {
+					if(damageBonus != null)
+						damageBonus.update(feature);
+					else {
+						damageBonus = new DamageBonus();
+						damageBonus.update(feature);
+					}
 				}
 			}
-		}		
+		}
 	}
 	
 	@Override
 	public boolean equals(Object classFeature) {
-		ClassFeature classFeatureToCompare = (ClassFeature) classFeature;
-		if((this.name == null && classFeatureToCompare.getName() == null) || (this.name != null && this.name.equals(classFeatureToCompare.getName()))) {
-			if((this.id == null && classFeatureToCompare.getId() == null) || this.id.equals(classFeatureToCompare.getId()))
-				if((this.type == null && classFeatureToCompare.getType() == null) || this.type.equals(classFeatureToCompare.getType()))
-					if((this.damageBonus == null && classFeatureToCompare.getDamageBonus() == null) || (this.damageBonus != null && this.damageBonus.equals(classFeatureToCompare.getDamageBonus())))
-						return true;
+		if(classFeature instanceof ClassFeature) {
+			ClassFeature classFeatureToCompare = (ClassFeature) classFeature;
+			if((this.name == null && classFeatureToCompare.getName() == null) || (this.name != null && this.name.equals(classFeatureToCompare.getName()))) {
+				if((this.id == null && classFeatureToCompare.getId() == null) || this.id.equals(classFeatureToCompare.getId()))
+					if((this.type == null && classFeatureToCompare.getType() == null) || this.type.equals(classFeatureToCompare.getType()))
+						if((this.damageBonus == null && classFeatureToCompare.getDamageBonus() == null) || (this.damageBonus != null && this.damageBonus.equals(classFeatureToCompare.getDamageBonus())))
+							return true;
+			}
 		}
 		return false;
 	}
