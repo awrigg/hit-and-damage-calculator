@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import br.com.wrigg.dnd.hitAndDamage.DiceType;
 import br.com.wrigg.dnd.hitAndDamage.Type;
+import br.com.wrigg.dnd.hitAndDamage.Item.Item;
 import br.com.wrigg.dnd.hitAndDamage._class.ClassFeature;
 import br.com.wrigg.dnd.hitAndDamage._class.TurnLevel;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
@@ -192,6 +193,25 @@ public class DamageRollCalculatorTest {
 		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
 		
 		assertEquals("1D4+9", damageRoll);
+		
+	}
+	
+	@Test
+	public void calculateEnlargePersonWithWeaponAndStrengthDamageRollTest() {
+		Character character = new Character();
+		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		character.equip(weapon);
+		
+		Attribute str = new Attribute(18);
+		character.setStrength(str);
+		
+		Item enlargePerson = new Item("smite", "Smite");
+		character.activateItem(enlargePerson);
+		
+		BasicDamageRollCalculator damageRollCalculator = new BasicDamageRollCalculator();
+		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		
+		assertEquals("1D6+4", damageRoll);
 		
 	}
 }

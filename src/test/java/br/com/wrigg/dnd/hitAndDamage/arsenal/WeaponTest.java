@@ -82,4 +82,24 @@ public class WeaponTest {
 		assertEquals(weapon1, weapon2);
 	}
 
+	@Test
+	public void weaponSizeIncreaseTest() {
+		DiceType diceType = new DiceType(4);
+		Weapon weapon = new Weapon(diceType);
+		
+		weapon.increaseSize();
+				
+		DiceType newDiceType = new DiceType(6);
+		assertEquals(newDiceType, ReflectionTestUtils.getField(weapon, "diceType"));
+		assertEquals(1, ReflectionTestUtils.getField(weapon, "diceQuantity"));
+
+		diceType = new DiceType(8);
+		weapon = new Weapon(diceType);
+		
+		weapon.increaseSize();
+				
+		newDiceType = new DiceType(6);
+		assertEquals(newDiceType, ReflectionTestUtils.getField(weapon, "diceType"));
+		assertEquals(2, ReflectionTestUtils.getField(weapon, "diceQuantity"));
+	}
 }

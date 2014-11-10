@@ -118,4 +118,11 @@ public class Weapon {
 		
 		return diceQuantity + diceType.toString();
 	}
+
+	public void increaseSize() {
+		boolean extrapolate = diceType.increment();
+		
+		if(extrapolate)
+			diceQuantity++;
+	}
 }

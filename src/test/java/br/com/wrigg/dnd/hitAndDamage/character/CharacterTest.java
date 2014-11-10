@@ -2,6 +2,8 @@ package br.com.wrigg.dnd.hitAndDamage.character;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +12,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import br.com.wrigg.dnd.hitAndDamage.DiceType;
 import br.com.wrigg.dnd.hitAndDamage.Type;
+import br.com.wrigg.dnd.hitAndDamage.Item.Item;
 import br.com.wrigg.dnd.hitAndDamage._class.ClassFeature;
 import br.com.wrigg.dnd.hitAndDamage._class.TurnLevel;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
@@ -168,6 +171,17 @@ public class CharacterTest {
 	}
 	
 	@Test
+	public void characterWithItemEqualTest() {
+		Character character1 = new Character();
+		character1.getItems().add(new Item("enlargePersonPotion", "Enlarge Person Potion"));
+		
+		Character character2 = new Character();
+		character2.getItems().add(new Item("enlargePersonPotion", "Enlarge Person Potion"));
+
+		assertEquals(character1, character2);		
+	}
+	
+	@Test
 	public void characterWithMoreThenOneFeatureDependentShouldNotReturnCastException() {
 		DiceType diceType1 = new DiceType(4);
 		Weapon weapon1 = new Weapon("Kukri", diceType1);
@@ -201,5 +215,30 @@ public class CharacterTest {
 		Character character = new Character();
 		
 		character.activateFeat(null);
+	}
+	
+	@Test
+	public void characterIncreaseSizeTest() {
+		Weapon kukri = new Weapon(new DiceType(4));
+		Character character = new Character();
+		character.equip(kukri);
+		
+		character.increaseSize();
+		
+		Weapon largeKukri = new Weapon(new DiceType(6));
+		assertEquals(largeKukri, character.getWeapon());
+	}
+	
+	@Test
+	public void characterActivateItemTest() {
+		Character character = new Character();
+
+		Item item = mock(Item.class);
+		
+		character.activateItem(item);
+		
+		assertEquals(1, character.getItems().size());
+
+		verify(item).activate(character);
 	}
 }

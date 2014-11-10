@@ -24,5 +24,30 @@ public class DiceTypeTest {
 		assertEquals(diceType1, diceType2);
 	}
 
-
+	@Test
+	public void diceTypeIncrementTest() {
+		DiceType diceType = new DiceType(4);
+		diceType.increment();
+		
+		DiceType newDiceType = new DiceType(6);
+		
+		assertEquals(newDiceType, diceType);
+		
+		diceType = new DiceType(6);
+		boolean extrapolate = diceType.increment();
+		
+		newDiceType = new DiceType(8);
+		
+		assertEquals(newDiceType, diceType);
+		assertTrue(!extrapolate);
+		
+		diceType = new DiceType(8);
+		extrapolate = diceType.increment();
+		
+		newDiceType = new DiceType(6);
+		
+		assertEquals(newDiceType, diceType);
+		assertTrue(extrapolate);
+	}
+	
 }

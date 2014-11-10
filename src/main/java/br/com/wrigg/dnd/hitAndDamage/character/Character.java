@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+import br.com.wrigg.dnd.hitAndDamage.Item.Item;
 import br.com.wrigg.dnd.hitAndDamage._class.ClassFeature;
 import br.com.wrigg.dnd.hitAndDamage._class.TurnLevel;
 import br.com.wrigg.dnd.hitAndDamage.arsenal.Weapon;
@@ -25,6 +26,8 @@ public class Character extends Observable {
 	private List<Spell> spells = new ArrayList<Spell>();
 	
 	private List<ClassFeature> classFeatures = new ArrayList<ClassFeature>();
+	
+	private List<Item> items = new ArrayList<Item>();
 
 	private TurnLevel turnLevel;
 	
@@ -127,6 +130,24 @@ public class Character extends Observable {
 		return turnLevel;
 	}
 		
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+	public void activateItem(Item item) {
+		this.items.add(item);
+		
+		item.activate(this);
+	}
+	
+	public void increaseSize() {
+		weapon.increaseSize();
+	}
+	
 	@Override
 	public boolean equals(Object character) {
 		Character characterToCompare = (Character) character;
@@ -138,7 +159,8 @@ public class Character extends Observable {
 							if((this.casterLevel == null && characterToCompare.getCasterLevel() == null) || (this.casterLevel != null && this.casterLevel.equals(characterToCompare.getCasterLevel())))
 								if((this.turnLevel == null && characterToCompare.getTurnLevel() == null) || (this.turnLevel != null && this.turnLevel.equals(characterToCompare.getTurnLevel())))
 									if((this.classFeatures == null && characterToCompare.getClassFeatures() == null) || (this.classFeatures != null && this.classFeatures.equals(characterToCompare.getClassFeatures())))
-										return true;
+										if((this.items == null && characterToCompare.getItems() == null) || (this.items != null && this.items.equals(characterToCompare.getItems())))
+											return true;
 		}
 		return false;
 	}
