@@ -2,6 +2,7 @@ package br.com.wrigg.dnd.hitanddamage.damage;
 
 import java.util.List;
 
+import br.com.wrigg.dnd.hitanddamage.Bonus;
 import br.com.wrigg.dnd.hitanddamage._class.ClassFeature;
 import br.com.wrigg.dnd.hitanddamage.arsenal.Weapon;
 import br.com.wrigg.dnd.hitanddamage.character.Attribute;
@@ -25,9 +26,9 @@ public class BasicDamageRollCalculator extends DamageRollCalculator {
 		
 		int strBonus = 0;
 		if(str != null) {
-			String strBonusText = str.printBonus();
-			if(!"".equals(strBonusText))
-				strBonus = Integer.parseInt(strBonusText);
+			Bonus bonus = str.getBonus();
+			if(bonus != null)
+				strBonus = bonus.getBonus();
 		}
 		
 		List<Feat> feats = character.getFeats();

@@ -2,8 +2,7 @@ package br.com.wrigg.dnd.hitanddamage.damage;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
+import br.com.wrigg.dnd.hitanddamage.Bonus;
 import br.com.wrigg.dnd.hitanddamage._class.ClassFeature;
 import br.com.wrigg.dnd.hitanddamage.feat.Feat;
 import br.com.wrigg.dnd.hitanddamage.spell.Spell;
@@ -18,9 +17,12 @@ public class DamageRollCalculator {
 		int totalFeatsDamageBonus = 0; 
 		
 		for (Feat feat : feats) {
-			String featDamageBonus = feat.printDamageBonus();
-			if(!"".equals(featDamageBonus))
-				totalFeatsDamageBonus += Integer.parseInt(featDamageBonus);
+			DamageBonus featDamageBonus = feat.getDamageBonus();
+			if(featDamageBonus != null) {
+				Bonus bonus = featDamageBonus.getBonus();
+				if(bonus != null)
+					totalFeatsDamageBonus += bonus.getBonus();
+			}
 		}
 		
 		return totalFeatsDamageBonus;
@@ -31,9 +33,12 @@ public class DamageRollCalculator {
 		int totalSpellsDamageBonus = 0; 
 		
 		for (Spell spell : spells) {
-			String spellDamageBonus = spell.printDamageBonus();
-			if(!"".equals(spellDamageBonus))
-				totalSpellsDamageBonus += Integer.parseInt(spellDamageBonus);
+			DamageBonus spellDamageBonus = spell.getDamageBonus();
+			if(spellDamageBonus != null) {
+				Bonus bonus = spellDamageBonus.getBonus();
+				if(bonus != null)
+					totalSpellsDamageBonus += bonus.getBonus();
+			}
 		}
 		
 		return totalSpellsDamageBonus;
@@ -43,9 +48,12 @@ public class DamageRollCalculator {
 		int totalclassFeatureDamageBonus = 0; 
 		
 		for (ClassFeature classFeature : classFeatures) {
-			String classFeatureDamageBonus = classFeature.printDamageBonus();
-			if(!"".equals(classFeatureDamageBonus))
-				totalclassFeatureDamageBonus += Integer.parseInt(classFeatureDamageBonus);
+			DamageBonus classFeatureDamageBonus = classFeature.getDamageBonus();
+			if(classFeatureDamageBonus != null) {
+				Bonus bonus = classFeatureDamageBonus.getBonus();
+				if(bonus != null)
+					totalclassFeatureDamageBonus += bonus.getBonus();
+			}
 		}
 		
 		return totalclassFeatureDamageBonus;

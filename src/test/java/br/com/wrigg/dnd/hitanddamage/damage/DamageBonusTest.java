@@ -1,8 +1,6 @@
 package br.com.wrigg.dnd.hitanddamage.damage;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.powermock.api.mockito.PowerMockito.spy;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
 
@@ -12,8 +10,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import br.com.wrigg.dnd.hitanddamage.character.Attribute;
-import br.com.wrigg.dnd.hitanddamage.damage.DamageBonus;
-import br.com.wrigg.dnd.hitanddamage.damage.DamageBonusByFeatureFactoryMethod;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ DamageBonusByFeatureFactoryMethod.class })
