@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.apache.log4j.Logger;
-
 import br.com.wrigg.dnd.hitanddamage.Type;
 import br.com.wrigg.dnd.hitanddamage.damage.DamageBonus;
 

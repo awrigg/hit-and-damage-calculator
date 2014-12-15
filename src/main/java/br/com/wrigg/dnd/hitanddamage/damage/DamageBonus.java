@@ -1,7 +1,5 @@
 package br.com.wrigg.dnd.hitanddamage.damage;
 
-import org.apache.log4j.Logger;
-
 import br.com.wrigg.dnd.hitanddamage.Bonus;
 
 public class DamageBonus {

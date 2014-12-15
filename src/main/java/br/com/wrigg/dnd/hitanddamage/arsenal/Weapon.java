@@ -1,7 +1,5 @@
 package br.com.wrigg.dnd.hitanddamage.arsenal;
 
-import org.apache.log4j.Logger;
-
 import br.com.wrigg.dnd.hitanddamage.DiceType;
 import br.com.wrigg.dnd.hitanddamage.damage.DamageBonus;
 
