@@ -61,7 +61,7 @@ public class Weapon {
 	
 	//FIXME metodo apenas para os testes iniciais
 	public Weapon[] values() {
-		Weapon[] weapons = new Weapon[3];
+		Weapon[] weapons = new Weapon[2];
 		weapons[0] = new Weapon("Kukri", new DiceType(4), 1, 2);
 		weapons[1] = new Weapon("Long Sword", new DiceType(8), 1, 2);
 		return weapons;
