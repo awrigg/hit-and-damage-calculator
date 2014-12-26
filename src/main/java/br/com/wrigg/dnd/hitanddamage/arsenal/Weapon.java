@@ -117,4 +117,9 @@ public class Weapon {
 		if(extrapolate)
 			diceQuantity++;
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 }

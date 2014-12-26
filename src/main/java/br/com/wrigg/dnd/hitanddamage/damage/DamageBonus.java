@@ -30,9 +30,8 @@ public class DamageBonus {
 	public void update(Object feature) {
 		DamageBonusByFeature damageBonusByFeature = new DamageBonusByFeatureFactoryMethod();
 		
-		String bonusValue = damageBonusByFeature.execute(feature);
-		if(bonusValue != null && !"".equals(bonusValue))
-			bonus = new Bonus(Integer.parseInt(bonusValue));
+		int bonusValue = damageBonusByFeature.execute(feature);
+		bonus = new Bonus(bonusValue);
 	}
 	
 	@Override

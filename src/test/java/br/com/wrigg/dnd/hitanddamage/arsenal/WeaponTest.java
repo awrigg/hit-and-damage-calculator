@@ -102,4 +102,17 @@ public class WeaponTest {
 		assertEquals(newDiceType, ReflectionTestUtils.getField(weapon, "diceType"));
 		assertEquals(2, ReflectionTestUtils.getField(weapon, "diceQuantity"));
 	}
+	
+	@Test
+	public void weaponToStringShouldReturnItsNameTest() {
+		DiceType diceType = new DiceType(4);
+		Weapon weapon = new Weapon("Kukri", diceType);
+		
+		assertEquals("Kukri", weapon.toString());
+		
+		weapon = new Weapon("Long Sword", diceType);
+		
+		assertEquals("Long Sword", weapon.toString());
+
+	}
 }

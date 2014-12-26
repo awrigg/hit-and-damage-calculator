@@ -6,7 +6,7 @@ import br.com.wrigg.dnd.hitanddamage.spell.CasterLevel;
 
 public class DamageBonusByFeatureFactoryMethod implements DamageBonusByFeature {
 
-	public String execute(Object feature) {
+	public int execute(Object feature) {
 		DamageBonusByFeature damageBonusByFeature = create(feature);
 
 		return damageBonusByFeature.execute(feature);

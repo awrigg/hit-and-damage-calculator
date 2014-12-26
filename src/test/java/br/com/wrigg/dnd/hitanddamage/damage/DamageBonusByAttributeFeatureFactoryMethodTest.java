@@ -18,12 +18,12 @@ public class DamageBonusByAttributeFeatureFactoryMethodTest {
 		
 		Attribute attribute = new Attribute(18);
 		
-		String damageBonus = damageBonusByAttributeFeatureFactoryMethod.execute(attribute);
-		assertEquals("+4", damageBonus);
+		int damageBonus = damageBonusByAttributeFeatureFactoryMethod.execute(attribute);
+		assertEquals(4, damageBonus);
 		
 		attribute = new Attribute(16);
 		
 		damageBonus = damageBonusByAttributeFeatureFactoryMethod.execute(attribute);
-		assertEquals("+3", damageBonus);
+		assertEquals(3, damageBonus);
 	}
 }
