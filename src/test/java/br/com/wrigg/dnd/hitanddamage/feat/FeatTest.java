@@ -32,6 +32,21 @@ public class FeatTest {
 		featBonusDamage = feat.printDamageBonus();
 		assertEquals("+3", featBonusDamage.toString());
 	}
+	
+	@Test
+	public void settingCharismaBeforeDivineMetamagicShouldUpdateDamageBonusTest() {
+		Feat feat = new Feat("divineMetamagic", "Divine Metamagic", Type.FEATURE_DEPENDENT);
+
+		Character character = new Character();
+
+		Attribute cha = new Attribute(18);
+		character.setCharisma(cha);
+
+		character.activateFeat(feat);
+		
+		String featBonusDamage = feat.printDamageBonus();
+		assertEquals("+4", featBonusDamage.toString());
+	}
 
 	@Test
 	public void powerAttackShowldNotChangeBonusValueWithChaChangesTest() {

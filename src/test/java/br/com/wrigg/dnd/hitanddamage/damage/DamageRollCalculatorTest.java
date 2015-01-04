@@ -216,4 +216,18 @@ public class DamageRollCalculatorTest {
 		assertEquals("1D6+4", damageRoll);
 		
 	}
+	
+	@Test
+	public void calculateNoWeaponAndStrengthSholdShowNoDamageRollTest() {
+		Character character = new Character();
+		
+		Attribute str = new Attribute(18);
+		character.setStrength(str);
+		
+		BasicDamageRollCalculator damageRollCalculator = new BasicDamageRollCalculator();
+		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		
+		assertEquals("", damageRoll);
+		
+	}
 }

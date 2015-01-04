@@ -181,4 +181,18 @@ public class CriticalDamageRollCalculatorTest {
 		assertEquals("2D4+18", damageRoll);
 		
 	}
+	
+	@Test
+	public void calculateNoWeaponAndStrengthShouldShowNoDamageRollTest() {
+		Character character = new Character();
+		
+		Attribute str = new Attribute(18);
+		character.setStrength(str);
+		
+		CriticalDamageRollCalculator criticalDamageRollCalculator = new CriticalDamageRollCalculator();
+		String damageRoll = criticalDamageRollCalculator.calculateDamageRoll(character);
+		
+		assertEquals("", damageRoll);
+	}
+
 }

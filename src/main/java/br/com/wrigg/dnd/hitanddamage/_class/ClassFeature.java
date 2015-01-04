@@ -74,7 +74,7 @@ public class ClassFeature implements Observer{
 	//FIXME criado para os testes iniciais
 	public List<ClassFeature> values() {
 		List<ClassFeature> classFeatures = new ArrayList<ClassFeature>();
-		ClassFeature smite = new ClassFeature("smite", "Smite");
+		ClassFeature smite = new ClassFeature("smite", "Smite", Type.FEATURE_DEPENDENT);
 		classFeatures.add(smite);
 		
 		return classFeatures;

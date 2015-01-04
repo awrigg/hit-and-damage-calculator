@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+import br.com.wrigg.dnd.hitanddamage.Type;
 import br.com.wrigg.dnd.hitanddamage.Item.Item;
 import br.com.wrigg.dnd.hitanddamage._class.ClassFeature;
 import br.com.wrigg.dnd.hitanddamage._class.TurnLevel;
@@ -74,6 +75,13 @@ public class Character extends Observable {
 		if(feat != null) {
 			feats.add(feat);
 			this.addObserver(feat);
+		}
+		
+		if(Type.FEATURE_DEPENDENT.equals(feat.getType())) {
+			if(charisma != null) {
+				setChanged();
+		        notifyObservers(charisma);
+			}
 		}
 	}
 	
