@@ -47,7 +47,7 @@ public class FeatTest {
 		String featBonusDamage = feat.printDamageBonus();
 		assertEquals("+4", featBonusDamage.toString());
 	}
-
+	
 	@Test
 	public void powerAttackShowldNotChangeBonusValueWithChaChangesTest() {
 		Feat feat = new Feat("powerAttack", "Power Attack");

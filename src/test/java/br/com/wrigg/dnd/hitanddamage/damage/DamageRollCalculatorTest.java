@@ -178,6 +178,30 @@ public class DamageRollCalculatorTest {
 	}
 	
 	@Test
+	public void changeCasterLevelNullAfterCastingDivineFavorShouldUpdateDamageBonusToPlusOneTest() {
+		Character character = new Character();
+		Weapon weapon = new Weapon("Kukri", new DiceType(4));
+		character.equip(weapon);
+
+		character.setCasterLevel(new CasterLevel(6));
+
+		Spell divineFavor = new Spell("divineFavor", "Divine Favor", Type.FEATURE_DEPENDENT);
+		character.castSpell(divineFavor);
+		
+		BasicDamageRollCalculator damageRollCalculator = new BasicDamageRollCalculator();
+		String damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		
+		assertEquals("1D4+2", damageRoll);
+		
+		character.setCasterLevel(null);
+		
+		damageRoll = damageRollCalculator.calculateDamageRoll(character);
+		
+		assertEquals("1D4+1", damageRoll);
+		
+	}
+	
+	@Test
 	public void calculateSmiteWithWeaponAndStrengthDamageRollTest() {
 		Character character = new Character();
 		Weapon weapon = new Weapon("Kukri", new DiceType(4));

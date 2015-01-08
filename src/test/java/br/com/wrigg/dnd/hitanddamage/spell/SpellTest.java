@@ -34,7 +34,20 @@ public class SpellTest {
 		
 		String spellDamageBonus = spell.printDamageBonus();
 		assertEquals("+2", spellDamageBonus);
-	}	
+	}
+	
+	@Test
+	public void settingCasterLevelBeforeCastingDivineFavorShouldUpdateDamageBonusTest() {
+		Spell spell = new Spell("divineFavor", "Divine Favor", Type.FEATURE_DEPENDENT);
+
+		Character character = new Character();
+		character.setCasterLevel(new CasterLevel(6));
+
+		character.castSpell(spell);
+		
+		String spellDamageBonus = spell.printDamageBonus();
+		assertEquals("+2", spellDamageBonus);
+	}
 
 	@Test
 	public void spellEqualsTest() {

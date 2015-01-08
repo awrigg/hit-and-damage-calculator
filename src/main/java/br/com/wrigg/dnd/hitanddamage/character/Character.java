@@ -90,6 +90,13 @@ public class Character extends Observable {
 			spells.add(spell);
 			this.addObserver(spell);
 		}
+		
+		if(Type.FEATURE_DEPENDENT.equals(spell.getType())) {
+			if(casterLevel != null) {
+				setChanged();
+		        notifyObservers(casterLevel);
+			}
+		}
 	}
 	
 	public void activateClassFeature(ClassFeature classFeature) {
@@ -113,9 +120,14 @@ public class Character extends Observable {
 
 	public void setCasterLevel(CasterLevel casterLevel) {
 		this.casterLevel = casterLevel;
-		
+
 		setChanged();
-        notifyObservers(casterLevel);
+
+		if(casterLevel != null) {
+	        notifyObservers(casterLevel);
+		} else {
+	        notifyObservers(new CasterLevel(0));
+		}
 	}
 
 	
@@ -177,5 +189,13 @@ public class Character extends Observable {
 	@Override
 	public int hashCode() {
 		return this.getClass().hashCode();
+	}
+
+	public void deactivateFeat(Feat feat) {
+		feats.remove(feat);		
+	}
+
+	public void cancelSpell(Spell spell) {
+		spells.remove(spell);		
 	}
 }

@@ -243,4 +243,45 @@ public class CharacterTest {
 
 		verify(item).activate(character);
 	}
+	
+	@Test
+	public void characterActivateFeatTest() {
+		Character character = new Character();
+
+		Feat feat = mock(Feat.class);
+		
+		character.activateFeat(feat);
+		
+		assertEquals(1, character.getFeats().size());		
+	}
+	
+	@Test
+	public void characterDeactivateFeatTest() {
+		Character character = new Character();
+
+		Feat feat = mock(Feat.class);
+		
+		character.activateFeat(feat);
+		
+		assertEquals(1, character.getFeats().size());
+		
+		character.deactivateFeat(feat);
+		
+		assertEquals(0, character.getFeats().size());
+	}
+	
+	@Test
+	public void characterCancelSpellTest() {
+		Character character = new Character();
+
+		Spell spell = mock(Spell.class);
+		
+		character.castSpell(spell);
+		
+		assertEquals(1, character.getSpells().size());
+		
+		character.cancelSpell(spell);
+		
+		assertEquals(0, character.getSpells().size());
+	}
 }
