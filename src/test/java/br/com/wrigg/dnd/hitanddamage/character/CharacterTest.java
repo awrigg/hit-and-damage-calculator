@@ -271,6 +271,21 @@ public class CharacterTest {
 	}
 	
 	@Test
+	public void characterDeactivateClassFeatureTest() {
+		Character character = new Character();
+
+		ClassFeature classFeature = mock(ClassFeature.class);
+		
+		character.activateClassFeature(classFeature);
+		
+		assertEquals(1, character.getClassFeatures().size());
+		
+		character.deactivateClassFeature(classFeature);
+		
+		assertEquals(0, character.getClassFeatures().size());
+	}
+	
+	@Test
 	public void characterCancelSpellTest() {
 		Character character = new Character();
 

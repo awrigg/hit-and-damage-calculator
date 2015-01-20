@@ -30,6 +30,37 @@ public class ClassFeatureTest {
 	}
 	
 	@Test
+	public void settingTurnLevelBeforeActivatingSmiteShouldShowDamageBonusTest() {
+		ClassFeature smite = new ClassFeature("smite", "Smite", Type.FEATURE_DEPENDENT);
+
+		Character character = new Character();
+		character.setTurnLevel(new TurnLevel(5));
+
+		character.activateClassFeature(smite);
+
+		String smiteDamageBonus = smite.printDamageBonus();
+		assertEquals("+5", smiteDamageBonus.toString());
+	}
+	
+	@Test
+	public void settingTurnLevelNullShouldShowNoSmiteDamageBonusTest() {
+		ClassFeature smite = new ClassFeature("smite", "Smite", Type.FEATURE_DEPENDENT);
+
+		Character character = new Character();
+		character.setTurnLevel(new TurnLevel(5));
+
+		character.activateClassFeature(smite);
+
+		String smiteDamageBonus = smite.printDamageBonus();
+		assertEquals("+5", smiteDamageBonus.toString());
+		
+		character.setTurnLevel(null);
+		
+		smiteDamageBonus = smite.printDamageBonus();
+		assertEquals("+0", smiteDamageBonus.toString());
+	}
+	
+	@Test
 	public void classFeatureEqualsTest() {
 		ClassFeature smite1 = new ClassFeature("smite", "Smite", Type.FEATURE_DEPENDENT);
 		

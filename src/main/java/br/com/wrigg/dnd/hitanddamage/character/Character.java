@@ -104,6 +104,14 @@ public class Character extends Observable {
 			classFeatures.add(classFeature);
 			this.addObserver(classFeature);
 		}
+		
+		
+		if(Type.FEATURE_DEPENDENT.equals(classFeature.getType())) {
+			if(turnLevel != null) {
+				setChanged();
+		        notifyObservers(turnLevel);
+			}
+		}
 	}
 	
 	public List<Spell> getSpells() {
@@ -143,7 +151,12 @@ public class Character extends Observable {
 		this.turnLevel = turnLevel;
 		
 		setChanged();
-        notifyObservers(turnLevel);
+		
+		if(turnLevel != null) {
+			notifyObservers(turnLevel);
+		} else {
+	        notifyObservers(new TurnLevel(0));
+		}
 	}
 
 	public TurnLevel getTurnLevel() {
@@ -197,5 +210,9 @@ public class Character extends Observable {
 
 	public void cancelSpell(Spell spell) {
 		spells.remove(spell);		
+	}
+
+	public void deactivateClassFeature(ClassFeature classFeature) {
+		classFeatures.remove(classFeature);		
 	}
 }
