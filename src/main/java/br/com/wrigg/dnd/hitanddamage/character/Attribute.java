@@ -35,9 +35,12 @@ public class Attribute {
 	}
 	
 	private void calculateBonus() {
+		//FIXME tratar bonus negativo
 		if(value > 10) {
 			int bonusValue = (value-10)/2;
 			bonus = new Bonus(bonusValue);
+		} else {
+			bonus = new Bonus(0);
 		}
 	}
 	

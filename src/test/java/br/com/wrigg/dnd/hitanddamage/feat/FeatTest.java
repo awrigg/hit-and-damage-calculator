@@ -49,6 +49,26 @@ public class FeatTest {
 	}
 	
 	@Test
+	public void settingCharismaToNullAfterCastingDivineMetamagicShouldShowNoDamageBonusTest() {
+		Feat feat = new Feat("divineMetamagic", "Divine Metamagic", Type.FEATURE_DEPENDENT);
+
+		Character character = new Character();
+
+		Attribute cha = new Attribute(18);
+		character.setCharisma(cha);
+
+		character.activateFeat(feat);
+		
+		String featBonusDamage = feat.printDamageBonus();
+		assertEquals("+4", featBonusDamage.toString());
+		
+		character.setCharisma(null);
+		
+		featBonusDamage = feat.printDamageBonus();
+		assertEquals("+0", featBonusDamage.toString());
+	}
+	
+	@Test
 	public void powerAttackShowldNotChangeBonusValueWithChaChangesTest() {
 		Feat feat = new Feat("powerAttack", "Power Attack");
 		DamageBonus damageBonus = new DamageBonus(4);

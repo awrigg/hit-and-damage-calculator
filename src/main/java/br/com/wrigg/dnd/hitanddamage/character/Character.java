@@ -60,7 +60,10 @@ public class Character extends Observable {
 		this.charisma = charisma;
 
 		setChanged();
-        notifyObservers(charisma);
+		if(charisma != null)
+			notifyObservers(charisma);
+		else
+			notifyObservers(new Attribute(0));
 	}
 	
 	public List<Feat> getFeats() {
