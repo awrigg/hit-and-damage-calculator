@@ -122,4 +122,12 @@ public class Weapon {
 	public String toString() {
 		return name;
 	}
+
+	public void decreaseSize() {
+		boolean extrapolate = diceType.decrement();
+		
+		if(extrapolate)
+			diceQuantity--;
+	}
+
 }

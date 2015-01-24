@@ -44,4 +44,17 @@ public class DiceType {
 		
 		return false;
 	}
+
+	//TODO Tratar armas com mais de 1 dado
+	public boolean decrement() {
+		if(diceType == 8) {
+			this.diceType = 6;
+		} else {
+			if(diceType == 6) {
+				this.diceType = 4;
+			}
+		}
+		
+		return false;
+	}
 }

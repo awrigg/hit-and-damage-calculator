@@ -62,4 +62,9 @@ public class Attribute {
 	public int hashCode() {
 		return new Integer(value).hashCode();
 	}
+
+	public void add(int i) {
+		value = value + i;
+		calculateBonus();
+	}
 }

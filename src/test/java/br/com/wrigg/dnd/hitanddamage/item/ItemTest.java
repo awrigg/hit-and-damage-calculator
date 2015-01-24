@@ -19,6 +19,18 @@ public class ItemTest {
 		
 		verify(character).increaseSize();
 	}
+	
+	@Test
+	public void deactivateTest() {
+		Character character = mock(Character.class);
+
+		Item enlargePersonPotion = new Item();
+		enlargePersonPotion.activate(character);
+				
+		enlargePersonPotion.deactivate(character);
+		
+		verify(character).decreaseSize();
+	}
 
 	@Test
 	public void equalsTest() {

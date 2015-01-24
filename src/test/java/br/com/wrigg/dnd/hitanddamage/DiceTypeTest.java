@@ -52,4 +52,21 @@ public class DiceTypeTest {
 		assertTrue(extrapolate);
 	}
 	
+	@Test
+	public void diceTypeDecrementTest() {
+		DiceType diceType = new DiceType(6);
+		
+		boolean extrapolate = diceType.decrement();
+
+		DiceType newDiceType = new DiceType(4);
+		assertEquals(newDiceType, diceType);
+		assertTrue(!extrapolate);
+		
+		diceType = new DiceType(8);
+		extrapolate = diceType.decrement();
+		
+		newDiceType = new DiceType(6);
+		assertEquals(newDiceType, diceType);
+		assertTrue(!extrapolate);
+	}
 }

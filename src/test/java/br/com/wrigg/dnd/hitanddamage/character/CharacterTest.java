@@ -16,8 +16,6 @@ import br.com.wrigg.dnd.hitanddamage.Item.Item;
 import br.com.wrigg.dnd.hitanddamage._class.ClassFeature;
 import br.com.wrigg.dnd.hitanddamage._class.TurnLevel;
 import br.com.wrigg.dnd.hitanddamage.arsenal.Weapon;
-import br.com.wrigg.dnd.hitanddamage.character.Attribute;
-import br.com.wrigg.dnd.hitanddamage.character.Character;
 import br.com.wrigg.dnd.hitanddamage.feat.Feat;
 import br.com.wrigg.dnd.hitanddamage.spell.Spell;
 
@@ -232,6 +230,52 @@ public class CharacterTest {
 	}
 	
 	@Test
+	public void characterDecreaseSizeTest() {
+		Weapon kukri = new Weapon(new DiceType(4));
+		Character character = new Character();
+		character.equip(kukri);
+		
+		character.increaseSize();
+		
+		Weapon largeKukri = new Weapon(new DiceType(6));
+		assertEquals(largeKukri, character.getWeapon());
+		assertEquals(12, character.getStrength().getValue());
+		
+		character.decreaseSize();
+		
+		Weapon mediumKukri = new Weapon(new DiceType(4));
+		assertEquals(mediumKukri, character.getWeapon());
+		assertEquals(10, character.getStrength().getValue());
+	}
+	
+	@Test
+	public void characterWhithoutWeaponIncreaseSizeShouldNotReturnNullPointerTest() {		
+		Character character = new Character();
+
+		character.increaseSize();
+	}
+	
+	@Test
+	public void increaseSizeShouldUpgradeStrengthByTwoTest() {		
+		Character character = new Character();
+
+		character.setStrength(new Attribute(18));
+		
+		character.increaseSize();
+		
+		assertEquals(20, character.getStrength().getValue());
+	}
+	
+	@Test
+	public void increaseSizeForCharacterWithoutStrengthShouldCreateStrengthWithTwelveTest() {		
+		Character character = new Character();
+
+		character.increaseSize();
+		
+		assertEquals(12, character.getStrength().getValue());
+	}
+		
+	@Test
 	public void characterActivateItemTest() {
 		Character character = new Character();
 
@@ -242,6 +286,22 @@ public class CharacterTest {
 		assertEquals(1, character.getItems().size());
 
 		verify(item).activate(character);
+	}
+	
+	@Test
+	public void characterDeactivateItemTest() {
+		Character character = new Character();
+
+		Item item = mock(Item.class);
+		
+		character.activateItem(item);
+		
+		assertEquals(1, character.getItems().size());
+
+		character.deactivateItem(item);
+		assertEquals(0, character.getItems().size());
+		
+		verify(item).deactivate(character);
 	}
 	
 	@Test

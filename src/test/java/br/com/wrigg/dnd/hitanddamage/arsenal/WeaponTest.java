@@ -104,6 +104,24 @@ public class WeaponTest {
 	}
 	
 	@Test
+	public void weaponSizeDecreaseTest() {
+		DiceType diceType = new DiceType(4);
+		Weapon weapon = new Weapon(diceType);
+		
+		weapon.increaseSize();
+				
+		DiceType newDiceType = new DiceType(6);
+		assertEquals(newDiceType, ReflectionTestUtils.getField(weapon, "diceType"));
+		assertEquals(1, ReflectionTestUtils.getField(weapon, "diceQuantity"));
+		
+		weapon.decreaseSize();
+		newDiceType = new DiceType(4);
+		assertEquals(newDiceType, ReflectionTestUtils.getField(weapon, "diceType"));
+		assertEquals(1, ReflectionTestUtils.getField(weapon, "diceQuantity"));
+	}
+	//Testar diminuir armas grandes
+	
+	@Test
 	public void weaponToStringShouldReturnItsNameTest() {
 		DiceType diceType = new DiceType(4);
 		Weapon weapon = new Weapon("Kukri", diceType);

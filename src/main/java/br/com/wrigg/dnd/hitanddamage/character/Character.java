@@ -181,7 +181,14 @@ public class Character extends Observable {
 	}
 	
 	public void increaseSize() {
-		weapon.increaseSize();
+		if(weapon != null)
+			weapon.increaseSize();
+		if(strength != null)
+			strength.add(2);
+		else {
+			strength = new Attribute(10);
+			strength.add(2);
+		}			
 	}
 	
 	@Override
@@ -217,5 +224,23 @@ public class Character extends Observable {
 
 	public void deactivateClassFeature(ClassFeature classFeature) {
 		classFeatures.remove(classFeature);		
+	}
+	
+    public void decreaseSize() {
+		if(weapon != null)
+			weapon.decreaseSize();
+    	
+        if(strength != null)
+            strength.add(-2);
+        else {
+            strength = new Attribute(10);
+            strength.add(-2);
+        }
+    }
+
+	public void deactivateItem(Item item) {
+		this.items.remove(item);
+		
+		item.deactivate(this);	
 	}
 }

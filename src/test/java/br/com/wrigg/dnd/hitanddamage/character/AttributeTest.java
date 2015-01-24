@@ -36,5 +36,15 @@ public class AttributeTest {
 		Attribute str2 = new Attribute(18);
 		
 		assertEquals(str1, str2);
+	}
+	
+	@Test
+	public void increaseByTwoShouldAddTwoToTheAttributeValueTest() {
+		Attribute str = new Attribute(20);
+		
+		Attribute str2 = new Attribute(18);
+		str2.add(2);
+		
+		assertEquals(str, str2);
 	}	
 }

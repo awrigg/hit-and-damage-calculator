@@ -66,4 +66,8 @@ public class Item {
 	public int hashCode() {
 		return this.getClass().hashCode();
 	}
+	
+    public void deactivate(Character character) {
+        character.decreaseSize();
+    }
 }
